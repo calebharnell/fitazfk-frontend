@@ -7,21 +7,22 @@ import Login from './Login';
 import BookClasses from './BookClasses';
 import Gallery from './Gallery';
 import Contact from './Contact';
+import Logo from './Logo';
 
 class NavBar extends Component {
   state = {
     activeItem: 'home'
   }
-
   handleItemClick = (e, {name}) => this.setState({activeItem: name})
 
   render() {
     const {activeItem} = this.state
 
     return (<Router>
-      <div>
-        <Segment inverted="inverted">
-          <Menu inverted="inverted" secondary="secondary">
+      <div className="NavBar">
+        <Segment className="navbar">
+          <Logo />
+          <Menu secondary="secondary">
             <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
             <Menu.Item as={Link} to='/sign-up' name='sign-up' active={activeItem === 'sign-up'} onClick={this.handleItemClick}/>
             <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/>
