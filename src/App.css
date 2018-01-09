@@ -33,3 +33,7 @@
   display: inline-flex;
   justify-content: space-between;
 }
+
+.home-embed {
+  margin: 10px 20px 20px 20px;
+}

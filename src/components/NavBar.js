@@ -72,7 +72,6 @@ class NavBar extends Component {
       </Router>
     )
   }
-
   componentDidMount() {
     let token = localStorage.getItem('token')
     token && setJwt(token) 
