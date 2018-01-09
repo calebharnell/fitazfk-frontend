@@ -30,7 +30,6 @@ class SignUp extends Component {
         password: this.state.password
       })
       .then((response) => {
-      	console.log(response)
         setJwt(response.data.token)
         this.props.handleLoginResponse(response)
       })
