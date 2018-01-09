@@ -14,8 +14,7 @@ import Logo from './Logo';
 class NavBar extends Component {
   state = {
     activeItem: 'home',
-    loggedIn: null,
-    register: false
+    loggedIn: null
   }
 
   handleItemClick = (e, {name}) => this.setState({activeItem: name})
@@ -27,21 +26,24 @@ class NavBar extends Component {
     localStorage.removeItem('token')
   }
 
-  toggleRegister = () => {
-    this.setState({
-      register: !this.state.register
-    })
-  }
-
   handleLoginResponse = (response) => {
     this.setState({
       loggedIn: response.data.token,
-      register: false
     })
   }
 
   render() {
-    const {activeItem} = this.state
+    const { activeItem, loggedIn } = this.state
+
+    let loggedInButtons = null
+    if (!loggedIn) {
+      loggedInButtons = <Menu secondary="secondary"> 
+                          <Menu.Item as={Link} to='/sign-up' name='sign-up' active={activeItem === 'sign-up'} onClick={this.handleItemClick}/>
+                          <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/> 
+                        </Menu>
+    } else {
+      loggedInButtons = <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
+    }
 
     return (
       <Router>
@@ -50,8 +52,7 @@ class NavBar extends Component {
             <Logo />
             <Menu secondary="secondary">
               <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
-              <Menu.Item as={Link} to='/sign-up' name='sign-up' active={activeItem === 'sign-up'} onClick={this.handleItemClick}/>
-              <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/>
+              {loggedInButtons}
               <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
               <Menu.Item as={Link} to='classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
               <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
