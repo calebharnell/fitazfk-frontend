@@ -67,7 +67,12 @@ class NavBar extends Component {
               <SignUp {...routeProps} handleLoginResponse={this.handleLoginResponse} />
             )}
           />
-          <Route path="/login" component={Login}/>
+          <Route
+            path="/login"
+            render={(routeProps) => (
+              <Login {...routeProps} handleLoginResponse={this.handleLoginResponse} />
+            )}
+          />
           <Route path="/book-classes" component={BookClasses}/>
           <Route path="/classes" component={Classes}/>
           <Route path="/gallery" component={Gallery}/>

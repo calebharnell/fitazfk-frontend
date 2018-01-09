@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Button, Form } from 'semantic-ui-react'
 import { api, setJwt } from '../api/init';
+import { Redirect } from 'react-router-dom';
 
 class SignUp extends Component {
   constructor(props){
@@ -10,7 +11,8 @@ class SignUp extends Component {
       lastName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      redirectAfterSignup: false
     }
   }
 
@@ -31,6 +33,9 @@ class SignUp extends Component {
       })
       .then((response) => {
         setJwt(response.data.token)
+        this.setState({
+        	redirectAfterSignup: true
+        })
         this.props.handleLoginResponse(response)
       })
       .catch((error) => {
@@ -41,7 +46,13 @@ class SignUp extends Component {
     }
   }
   render() {
-  	const { firstName, lastName, email, password, confirmPassword } = this.state
+  	const { firstName, lastName, email, password, confirmPassword, redirectAfterSignup } = this.state
+
+    if (redirectAfterSignup) {
+      return (
+        <Redirect to={'/'}/>
+      )
+    }
 
     return (
     	<Grid centered columns={2}>
