@@ -9,6 +9,8 @@ import BookClasses from './BookClasses';
 import Classes from './Classes';
 import Gallery from './Gallery';
 import Contact from './Contact';
+import AdminClasses from './AdminClasses';
+import AdminUsers from './AdminUsers';
 import Logo from './Logo';
 
 class NavBar extends Component {
@@ -54,9 +56,11 @@ class NavBar extends Component {
               <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
               {loggedInButtons}
               <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
-              <Menu.Item as={Link} to='classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
+              <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
               <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
               <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>
+              <Menu.Item as={Link} to='/admin/classes' name='adminClasses' active={activeItem === 'adminClasses'} onClick={this.handleItemClick}/>
+              <Menu.Item as={Link} to='/admin/users' name='adminUsers' active={activeItem === 'adminUsers'} onClick={this.handleItemClick}/>
             </Menu>
           </Segment>
 
@@ -77,6 +81,8 @@ class NavBar extends Component {
           <Route path="/classes" component={Classes}/>
           <Route path="/gallery" component={Gallery}/>
           <Route path="/contact" component={Contact}/>
+          <Route path="/admin/classes" component={AdminClasses}/>
+          <Route path="/admin/users" component={AdminUsers}/>
         </div>
       </Router>
     )
