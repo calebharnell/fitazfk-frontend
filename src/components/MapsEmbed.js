@@ -9,7 +9,7 @@ const MapsEmbed = () => (
     iframe={{
       allowFullScreen: true,
       style: {
-        padding: 10,
+        padding: 5,
       },
     }}
     source='googlemaps'

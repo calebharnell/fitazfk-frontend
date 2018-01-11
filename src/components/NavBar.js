@@ -37,9 +37,9 @@ class NavBar extends Component {
 
     let loggedInButtons = null
     if (!loggedIn) {
-      loggedInButtons = <Menu secondary="secondary"> 
+      loggedInButtons = <Menu secondary="secondary">
                           <Menu.Item as={Link} to='/sign-up' name='sign-up' active={activeItem === 'sign-up'} onClick={this.handleItemClick}/>
-                          <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/> 
+                          <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/>
                         </Menu>
     } else {
       loggedInButtons = <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
@@ -49,8 +49,10 @@ class NavBar extends Component {
       <Router>
         <div className="NavBar">
           <Segment className="navbar">
-            <Logo />
             <Menu secondary="secondary">
+              <Menu.Item>
+                <Logo />
+              </Menu.Item>
               <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
               {loggedInButtons}
               <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
@@ -78,7 +80,7 @@ class NavBar extends Component {
   }
   componentDidMount() {
     let token = localStorage.getItem('token')
-    token && setJwt(token) 
+    token && setJwt(token)
     this.setState({
       loggedIn: token
     })
