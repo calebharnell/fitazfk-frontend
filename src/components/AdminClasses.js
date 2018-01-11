@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Search, Button, Icon } from 'semantic-ui-react';
 import { api, setJwt } from '../api/init';
+import CreateClassModal from './CreateClassModal';
 
 class AdminClasses extends Component {
   
@@ -15,8 +16,17 @@ class AdminClasses extends Component {
 
     return (
       <div>
-        <Table striped>
-          <Table.Header>
+        <Table celled compact definition>
+
+          <Table.Header fullWidth>
+            <Table.Row>
+              <Table.HeaderCell colSpan='6'>
+                <CreateClassModal floated='right'/>
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell>Date</Table.HeaderCell>
               <Table.HeaderCell>Time</Table.HeaderCell>
@@ -25,16 +35,18 @@ class AdminClasses extends Component {
               <Table.HeaderCell>Edit</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-
-          {sessions.map(session => (
-          	<Table.Body>
-            	<Table.Cell>{session.day}</Table.Cell>
-            	<Table.Cell>{session.time}</Table.Cell>
-            	<Table.Cell>{session.name}</Table.Cell>
-            	<Table.Cell>{session.instructor}</Table.Cell>
-            	<Table.Cell>CRUD</Table.Cell>
-          	</Table.Body>
-            	))}
+          
+          <Table.Body>
+            {sessions.map(session => (
+            <Table.Row>
+              	<Table.Cell>{session.day}</Table.Cell>
+              	<Table.Cell>{session.time}</Table.Cell>
+              	<Table.Cell>{session.name}</Table.Cell>
+              	<Table.Cell>{session.instructor}</Table.Cell>
+              	<Table.Cell>CRUD</Table.Cell>
+            </Table.Row>
+            ))}
+          </Table.Body>
         </Table>
       </div>
     );
