@@ -37,3 +37,18 @@
 .home-embed {
   margin: 10px 20px 20px 20px;
 }
+
+.google-map {
+  margin: 10px 10px 10px 10px;
+  max-width: 400px;
+  max-height: 400px;
+}
+
+.ContactDetails .contact-icon {
+  margin-bottom: 10px;
+}
+
+h1 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
