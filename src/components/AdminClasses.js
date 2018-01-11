@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
-import { api } from '../api/init';
+import { api, setJwt } from '../api/init';
 
 class AdminClasses extends Component {
   
