@@ -31,7 +31,7 @@ class BookClasses extends Component {
       <div>
         <h1>Book Classes</h1>
         { 
-          week.map(day => <SessionsTable day={day} sessions={this.matchSessions(day)} />)
+          week.map(day => <SessionsTable key={day} day={day} sessions={this.matchSessions(day)} />)
         }
       </div>
     );
