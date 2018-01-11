@@ -12,7 +12,7 @@ const SessionsTable = ({day, sessions}) => {
   	        <Table.HeaderCell width='six'>Instructor</Table.HeaderCell>
   	      </Table.Row>
   	    </Table.Header>
-  	    {sessions.map(session => session.day === day && <SessionRow time={session.time} name={session.name} instructor={session.instructor}/>)}
+  	    {sessions.map(session => session.day === day && <SessionRow key={session._id} id={session._id} time={session.time} name={session.name} instructor={session.instructor}/>)}
   	</Table>
   )
 }
