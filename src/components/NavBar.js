@@ -12,11 +12,14 @@ import Contact from './Contact';
 import AdminClasses from './AdminClasses';
 import AdminUsers from './AdminUsers';
 import Logo from './Logo';
+import jwtDecode from 'jwt-decode';
 
 class NavBar extends Component {
   state = {
     activeItem: 'home',
-    loggedIn: null
+    loggedIn: null,
+    currentUser: null,
+    tokenExp: null
   }
 
   handleItemClick = (e, {name}) => this.setState({activeItem: name})
@@ -29,13 +32,16 @@ class NavBar extends Component {
   }
 
   handleLoginResponse = (response) => {
+    const decodedToken = jwtDecode(response.data.token)
     this.setState({
       loggedIn: response.data.token,
+      tokenExp: decodedToken.exp,
+      currentUser: decodedToken.sub
     })
   }
 
   render() {
-    const { activeItem, loggedIn } = this.state
+    const { activeItem, loggedIn, currentUser } = this.state;
 
     let loggedInButtons = null
     if (!loggedIn) {
@@ -79,7 +85,12 @@ class NavBar extends Component {
               <Login {...routeProps} handleLoginResponse={this.handleLoginResponse} />
             )}
           />
-          <Route path="/book-classes" component={BookClasses}/>
+          <Route
+            path="/book-classes"
+            render={(routeProps) => (
+              <BookClasses {...routeProps} currentUser={currentUser} />
+            )}
+          />
           <Route path="/classes" component={Classes}/>
           <Route path="/gallery" component={Gallery}/>
           <Route path="/contact" component={Contact}/>
@@ -89,12 +100,22 @@ class NavBar extends Component {
       </Router>
     )
   }
+
   componentDidMount() {
     let token = localStorage.getItem('token')
     token && setJwt(token)
     this.setState({
       loggedIn: token
+      // tokenExp: decodedToken.exp,
+      // currentUser: decodedToken.sub
     })
+    if (token) {
+      const decodedToken = jwtDecode(token)
+      this.setState({
+        tokenExp: decodedToken.exp,
+        currentUser: decodedToken.sub
+      })
+    }
   }
 }
 
