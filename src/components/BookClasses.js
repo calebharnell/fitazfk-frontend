@@ -3,9 +3,12 @@ import { api } from '../api/init';
 import SessionsTable from './SessionsTable';
 
 class BookClasses extends Component {
-	 state = {
-    week: [],
-    sessions: []
+  constructor(props){
+    super(props)
+    this.state = {
+      week: [],
+      sessions: []
+    }
   }
 
   matchSessions = (day) => {
@@ -31,7 +34,11 @@ class BookClasses extends Component {
       <div>
         <h1>Book Classes</h1>
         { 
-          week.map(day => <SessionsTable key={day} day={day} sessions={this.matchSessions(day)} />)
+          week.map(day => <SessionsTable 
+                            key={day} 
+                            day={day} 
+                            sessions={this.matchSessions(day)} 
+                            currentUser={this.props.currentUser} />)
         }
       </div>
     );
