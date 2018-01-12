@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Table, Search, Button, Icon } from 'semantic-ui-react';
-import { api, setJwt } from '../api/init';
+import { Table } from 'semantic-ui-react';
+import { api } from '../api/init';
 import CreateClassModal from './CreateClassModal';
 import AdminClassesRow from './AdminClassesRow';
 
 class AdminClasses extends Component {
-  
+
   state = {
   	sessions: []
   }
@@ -35,7 +35,6 @@ class AdminClasses extends Component {
               <Table.HeaderCell>Edit</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          
             {sessions.map(session => (<AdminClassesRow
                                         key={session._id}
                                         id={session._id}
@@ -44,7 +43,6 @@ class AdminClasses extends Component {
                                         name={session.name}
                                         instructor={session.instructor} />
             ))}
-
         </Table>
       </div>
     );
