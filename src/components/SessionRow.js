@@ -10,10 +10,10 @@ class SessionRow extends Component {
 	  }
 	}
 	
-	handleAttendSession = () => {
+	handleJoinSession = () => {
 		let token = localStorage.getItem('token')
     token && setJwt(token) 
-		api.patch(`/sessions/${this.props.id}`, {
+		api.patch(`/sessions/join`, {
         _id: this.props.id
       })
 		  .then((response) => {
@@ -25,12 +25,30 @@ class SessionRow extends Component {
 		    console.log('An error occured when trying to book into the session.', error)
 		  })
 	}
+
+	handleLeaveSession = () => {
+		let token = localStorage.getItem('token')
+    token && setJwt(token) 
+		api.patch(`/sessions/leave`, {
+        _id: this.props.id
+      })
+		  .then((response) => {
+	  			this.setState({
+	  		  	attendees: this.state.attendees.filter(attendee => attendee !== this.props.currentUser)
+	  		  })
+		  	}
+		  )
+		  .catch((error) => {
+		    console.log('An error occured when trying to book into the session.', error)
+		  })
+	}
+
   render() {
-		let attendButton = null
+		let joinButton = null
 		if (this.state.attendees.includes(this.props.currentUser)) {
-			attendButton = <Button size='mini'>Leave</Button>
+			joinButton = <Button size='mini' onClick={this.handleLeaveSession}>Leave</Button>
 		} else {
-			attendButton = <Button size='mini' onClick={this.handleAttendSession}>Join</Button>
+			joinButton = <Button size='mini' onClick={this.handleJoinSession}>Join</Button>
 		}
 
 		return (
@@ -39,7 +57,7 @@ class SessionRow extends Component {
 			    <Table.Cell>{this.props.time}</Table.Cell>
 			    <Table.Cell>{this.props.name}</Table.Cell>
 			    <Table.Cell>{this.props.instructor}</Table.Cell>
-			    <Table.Cell>{attendButton}</Table.Cell>
+			    <Table.Cell>{joinButton}</Table.Cell>
 			  </Table.Row>
 			</Table.Body>
 		)
