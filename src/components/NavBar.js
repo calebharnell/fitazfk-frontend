@@ -26,7 +26,9 @@ class NavBar extends Component {
 
   handleLogOut = () => {
     this.setState({
-      loggedIn: null
+      loggedIn: null,
+      currentUser: null,
+      tokenExp: null
     })
     localStorage.removeItem('token')
   }
@@ -51,6 +53,7 @@ class NavBar extends Component {
                         </Menu>
     } else {
       loggedInButtons = <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
+      loggedInButtons = <Menu.Item as={Link} to='/' name='logout' onClick={this.handleLogOut}/>
     }
 
     return (
