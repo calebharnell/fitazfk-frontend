@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Icon, Table, Search } from 'semantic-ui-react'
+import { Button, Icon, Table, Search } from 'semantic-ui-react'
 import { api, setJwt } from '../api/init';
 
 
 class AdminUsers extends Component {
-  
+
 	state = {
 		users: [],
     isLoading: false,
@@ -33,7 +33,7 @@ class AdminUsers extends Component {
 	              <Button floated='right' icon labelPosition='left' primary size='small'>
 	                <Icon name='user' /> Add User
 	              </Button>
-	              <Search 
+	              <Search
                   loading={isLoading}
                   onSearchChange={this.handleSearchChange}
                 />
@@ -49,7 +49,7 @@ class AdminUsers extends Component {
               <Table.HeaderCell>Active</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          	
+
           <Table.Body>
 	          {filteredUsers.map(user =>(
 	          	  <Table.Row>
@@ -84,4 +84,3 @@ class AdminUsers extends Component {
 }
 
 export default AdminUsers;
-

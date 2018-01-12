@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Header, Icon, Image, Modal, Grid, Form } from 'semantic-ui-react';
-import { api, setJwt } from '../api/init';
-import { Redirect } from 'react-router-dom';
+import { Button, Modal, Form } from 'semantic-ui-react';
+import { api } from '../api/init';
 
 class CreateClassModal extends Component {
 
@@ -46,10 +45,10 @@ class CreateClassModal extends Component {
 	}
 
 	render() {
-		const { name, instructor, day, time, floor, redirectAfterCreate, modalActive } = this.state
+		const { name, instructor, day, time, floor, modalActive } = this.state
 
 		return (
-	  
+
 		  <Modal open={modalActive} trigger={<Button onClick={this.handleModal}>Create New Class</Button>} onClose={this.handleModal} >
 		    <Modal.Header>Create New Class</Modal.Header>
 		    <Modal.Content scrolling>
@@ -58,7 +57,7 @@ class CreateClassModal extends Component {
   		      <Form className="create-class-form" onSubmit={this.handleSubmit}>
   		      	<Form.Group>
   		          <Form.Input label='Class Type' name='name' value={name} onChange={this.handleChange} width={16} />
-  		        </Form.Group>  
+  		        </Form.Group>
   		        <Form.Group>
   		          <Form.Input label='Instructor' name='instructor' value={instructor} onChange={this.handleChange} width={16} />
   		        </Form.Group>
@@ -70,7 +69,7 @@ class CreateClassModal extends Component {
   		        </Form.Group>
   		        <Form.Group>
   		          <Form.Input label='Floor' name='floor' value={floor} onChange={this.handleChange} width={16} />
-  		        </Form.Group>  
+  		        </Form.Group>
   		        <Button type='submit'>Submit</Button>
   		        <Button onClick={this.handleModal} color='red'>
   		          Cancel
