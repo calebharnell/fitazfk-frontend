@@ -9,6 +9,7 @@ import BookClasses from './BookClasses';
 import Classes from './Classes';
 import Gallery from './Gallery';
 import Contact from './Contact';
+import Account from './Account';
 import AdminClasses from './AdminClasses';
 import AdminUsers from './AdminUsers';
 import Logo from './Logo';
@@ -47,20 +48,22 @@ class NavBar extends Component {
 
     let loggedInButtons = null
     if (!loggedIn) {
-      loggedInButtons = <Menu secondary="secondary" stackable>
+      loggedInButtons = <Menu secondary stackable>
                           <Menu.Item as={Link} to='/sign-up' name='sign-up' active={activeItem === 'sign-up'} onClick={this.handleItemClick}/>
                           <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/>
                         </Menu>
     } else {
-      loggedInButtons = <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
-      loggedInButtons = <Menu.Item as={Link} to='/' name='logout' onClick={this.handleLogOut}/>
+      loggedInButtons = <Menu secondary stackable>
+                          <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
+                          <Menu.Item as={Link} to='/' name='logout' onClick={this.handleLogOut}/>
+                        </Menu>
     }
 
     return (
       <Router>
         <div className="NavBar">
           <Segment className="navbar">
-            <Menu secondary="secondary" stackable>
+            <Menu secondary stackable>
               <Menu.Item>
                 <Logo />
               </Menu.Item>
@@ -75,7 +78,7 @@ class NavBar extends Component {
             </Menu>
           </Segment>
 
-          <Route exact="exact" path="/" component={Home}/>
+          <Route exact path="/" component={Home}/>
           <Route
             path="/sign-up"
             render={(routeProps) => (
@@ -99,6 +102,12 @@ class NavBar extends Component {
           <Route path="/contact" component={Contact}/>
           <Route path="/admin/classes" component={AdminClasses}/>
           <Route path="/admin/users" component={AdminUsers}/>
+          <Route
+            path="/account"
+            render={(routeProps) => (
+              <Account {...routeProps} currentUser={currentUser} />
+            )}
+          />
         </div>
       </Router>
     )
