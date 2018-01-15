@@ -54,7 +54,7 @@ class Login extends Component {
 		          <Form.Input label='Email' placeholder='Email' name='email' value={email} onChange={this.handleChange} width={16} />
 		        </Form.Group>
 		        <Form.Group>
-		          <Form.Input label='Password' placeholder='Password' name='password' value={password} onChange={this.handleChange} width={16} />
+		          <Form.Input type='password' label='Password' placeholder='Password' name='password' value={password} onChange={this.handleChange} width={16} />
 		        </Form.Group>
 		        <Button type='submit'>Submit</Button>
 		      </Form>

@@ -69,10 +69,10 @@ class SignUp extends Component {
 		          <Form.Input label='Last Name' placeholder='Last Name' name='lastName' value={lastName} onChange={this.handleChange} width={16} />
 		        </Form.Group>
 		        <Form.Group>
-		          <Form.Input label='Password' placeholder='Password' name='password' value={password} onChange={this.handleChange} width={16} />
+		          <Form.Input type='password' label='Password' placeholder='Password' name='password' value={password} onChange={this.handleChange} width={16} />
 		        </Form.Group>
 		        <Form.Group>
-		          <Form.Input label='Confirm Password' placeholder='Confirm Password' name='confirmPassword' value={confirmPassword} onChange={this.handleChange} width={16} />
+		          <Form.Input type='password' label='Confirm Password' placeholder='Confirm Password' name='confirmPassword' value={confirmPassword} onChange={this.handleChange} width={16} />
 		        </Form.Group>  
 		        <Button type='submit'>Submit</Button>
 		      </Form>
