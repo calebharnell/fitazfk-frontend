@@ -74,10 +74,9 @@ class AdminUsers extends Component {
         this.setState({
           users: response.data
         })
-        console.log(this.state.users)
       })
       .catch((error) => {
-        console.log('An error occured retrieving sessions.', error)
+        console.log('An error occured retrieving users.', error)
       })
   }
 

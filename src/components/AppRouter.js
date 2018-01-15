@@ -20,7 +20,8 @@ class AppRouter extends Component {
     activeItem: 'home',
     loggedIn: null,
     currentUser: null,
-    tokenExp: null
+    tokenExp: null,
+    admin: false
   }
 
   handleItemClick = (e, {name}) => this.setState({activeItem: name})
@@ -31,7 +32,8 @@ class AppRouter extends Component {
     this.setState({
       loggedIn: null,
       currentUser: null,
-      tokenExp: null
+      tokenExp: null,
+      admin: false
     })
     localStorage.removeItem('token');
   }
@@ -41,7 +43,8 @@ class AppRouter extends Component {
     this.setState({
       loggedIn: response.data.token,
       tokenExp: decodedToken.exp,
-      currentUser: decodedToken.sub
+      currentUser: decodedToken.sub,
+      admin: response.data.admin || false
     })
   }
 
