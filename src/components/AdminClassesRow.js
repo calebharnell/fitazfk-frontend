@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { api, setJwt } from '../api/init';
 import { Table, Button } from 'semantic-ui-react'
 
 class AdminClassesRow extends Component {
@@ -18,7 +17,7 @@ class AdminClassesRow extends Component {
 	}
 
   render() {
-		return (			
+		return (
 			<Table.Body>
 				<Table.Row>
 				  	<Table.Cell contentEditable={this.state.editable}>{this.props.day}</Table.Cell>
