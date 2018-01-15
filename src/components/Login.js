@@ -26,8 +26,6 @@ class Login extends Component {
       password: this.state.password
 	    })
 	    .then((response) => {
-				console.log(response.data)
-				
 	      setJwt(response.data.token)
 	      this.setState({
 	      	redirectAfterSignup: true
