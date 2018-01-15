@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
 import { setJwt } from '../api/init';
 import Home from './Home';
 import SignUp from './SignUp';
@@ -15,7 +15,7 @@ import AdminUsers from './AdminUsers';
 import Logo from './Logo';
 import jwtDecode from 'jwt-decode';
 
-class NavBar extends Component {
+class AppRouter extends Component {
   state = {
     activeItem: 'home',
     loggedIn: null,
@@ -26,12 +26,14 @@ class NavBar extends Component {
   handleItemClick = (e, {name}) => this.setState({activeItem: name})
 
   handleLogOut = () => {
+    window.location.reload();
+
     this.setState({
       loggedIn: null,
       currentUser: null,
       tokenExp: null
     })
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
   }
 
   handleLoginResponse = (response) => {
@@ -52,10 +54,17 @@ class NavBar extends Component {
                           <Menu.Item as={Link} to='/sign-up' name='sign-up' active={activeItem === 'sign-up'} onClick={this.handleItemClick}/>
                           <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/>
                         </Menu>
+    } else if (loggedIn) {
+      loggedInButtons = <Menu secondary stackable>
+                          <Menu.Item as={Link} to='/admin/classes' name='adminClasses' active={activeItem === 'adminClasses'} onClick={this.handleItemClick}/>
+                          <Menu.Item as={Link} to='/admin/users' name='adminUsers' active={activeItem === 'adminUsers'} onClick={this.handleItemClick}/>
+                          <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
+                          <Menu.Item as={Link} to='/logout' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
+                        </Menu>
     } else {
       loggedInButtons = <Menu secondary stackable>
                           <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
-                          <Menu.Item as={Link} to='/' name='logout' onClick={this.handleLogOut}/>
+                          <Menu.Item as={Link} to='/logout' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
                         </Menu>
     }
 
@@ -72,8 +81,6 @@ class NavBar extends Component {
               <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
               <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
               <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>
-              <Menu.Item as={Link} to='/admin/classes' name='adminClasses' active={activeItem === 'adminClasses'} onClick={this.handleItemClick}/>
-              <Menu.Item as={Link} to='/admin/users' name='adminUsers' active={activeItem === 'adminUsers'} onClick={this.handleItemClick}/>
               {loggedInButtons}
             </Menu>
           </Segment>
@@ -108,6 +115,9 @@ class NavBar extends Component {
               <Account {...routeProps} currentUser={currentUser} />
             )}
           />
+          <Route exact path="/logout" render={() => (
+            <Redirect to="/login"/>
+            )}/>
         </div>
       </Router>
     )
@@ -118,11 +128,10 @@ class NavBar extends Component {
     token && setJwt(token)
     this.setState({
       loggedIn: token
-      // tokenExp: decodedToken.exp,
-      // currentUser: decodedToken.sub
     })
     if (token) {
       const decodedToken = jwtDecode(token)
+      console.log(decodedToken)
       this.setState({
         tokenExp: decodedToken.exp,
         currentUser: decodedToken.sub
@@ -131,4 +140,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default AppRouter;
