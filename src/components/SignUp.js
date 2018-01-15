@@ -29,7 +29,8 @@ class SignUp extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+        active: true
       })
       .then((response) => {
         setJwt(response.data.token)
