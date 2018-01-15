@@ -27,8 +27,6 @@ class AppRouter extends Component {
   handleItemClick = (e, {name}) => this.setState({activeItem: name})
 
   handleLogOut = () => {
-    window.location.reload();
-
     this.setState({
       loggedIn: null,
       currentUser: null,
@@ -36,6 +34,7 @@ class AppRouter extends Component {
       admin: false
     })
     localStorage.removeItem('token');
+    window.location.reload();
   }
 
   handleLoginResponse = (response) => {
@@ -57,7 +56,7 @@ class AppRouter extends Component {
                           <Menu.Item as={Link} to='/sign-up' name='sign-up' active={activeItem === 'sign-up'} onClick={this.handleItemClick}/>
                           <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/>
                         </Menu>
-    } else if (loggedIn) {
+    } else if (loggedIn && this.state.admin) {
       loggedInButtons = <Menu secondary stackable>
                           <Menu.Item as={Link} to='/admin/classes' name='adminClasses' active={activeItem === 'adminClasses'} onClick={this.handleItemClick}/>
                           <Menu.Item as={Link} to='/admin/users' name='adminUsers' active={activeItem === 'adminUsers'} onClick={this.handleItemClick}/>
@@ -67,7 +66,7 @@ class AppRouter extends Component {
     } else {
       loggedInButtons = <Menu secondary stackable>
                           <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
-                          <Menu.Item as={Link} to='/logout' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
+                          <Menu.Item as={Link} to='/login' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
                         </Menu>
     }
 
@@ -98,7 +97,7 @@ class AppRouter extends Component {
           <Route
             path="/login"
             render={(routeProps) => (
-              <Login {...routeProps} handleLoginResponse={this.handleLoginResponse} />
+              <Login {...routeProps} handleLoginResponse={this.handleLoginResponse} handleSetAdmin={this.handleSetAdmin} />
             )}
           />
           <Route
