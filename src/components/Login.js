@@ -47,19 +47,22 @@ class Login extends Component {
 	  }
 
     return (
-    	<Grid centered columns={2}>
-	    	<Grid.Column>
-		      <Form className="login-form" onSubmit={this.handleSubmit}>
-		      	<Form.Group>
-		          <Form.Input label='Email' placeholder='Email' name='email' value={email} onChange={this.handleChange} width={16} />
-		        </Form.Group>
-		        <Form.Group>
-		          <Form.Input label='Password' placeholder='Password' name='password' value={password} onChange={this.handleChange} width={16} />
-		        </Form.Group>
-		        <Button type='submit'>Submit</Button>
-		      </Form>
-	      </Grid.Column>
-      </Grid>
+			<div className='login-container'>
+				<h1>Log In</h1>
+	    	<Grid centered columns={2}>
+		    	<Grid.Column>
+			      <Form className="login-form" onSubmit={this.handleSubmit}>
+			      	<Form.Group>
+			          <Form.Input type='email' autoFocus required label='Email' placeholder='Email' name='email' value={email} onChange={this.handleChange} width={16} />
+			        </Form.Group>
+			        <Form.Group>
+			          <Form.Input  type='password' required label='Password' placeholder='Password' name='password' value={password} onChange={this.handleChange} width={16} />
+			        </Form.Group>
+			        <Button type='submit' color='blue'>Submit</Button>
+			      </Form>
+		      </Grid.Column>
+	      </Grid>
+			</div>
     );
   }
 }

@@ -28,6 +28,7 @@ class AppRouter extends Component {
 
   handleLogOut = () => {
     this.setState({
+      activeItem: 'login',
       loggedIn: null,
       currentUser: null,
       tokenExp: null,
@@ -61,7 +62,7 @@ class AppRouter extends Component {
                           <Menu.Item as={Link} to='/admin/classes' name='adminClasses' active={activeItem === 'adminClasses'} onClick={this.handleItemClick}/>
                           <Menu.Item as={Link} to='/admin/users' name='adminUsers' active={activeItem === 'adminUsers'} onClick={this.handleItemClick}/>
                           <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
-                          <Menu.Item as={Link} to='/logout' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
+                          <Menu.Item as={Link} to='/logout' name='logout' onClick={this.handleLogOut}/>
                         </Menu>
     } else {
       loggedInButtons = <Menu secondary stackable>
