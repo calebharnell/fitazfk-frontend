@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { api, setJwt } from '../api/init';
-import { Table, Button } from 'semantic-ui-react'
+import { Table, Button, Icon, Modal } from 'semantic-ui-react';
 
 class SessionRow extends Component {
 	constructor(props){
@@ -9,7 +9,7 @@ class SessionRow extends Component {
 	    attendees: this.props.attendees
 	  }
 	}
-	
+
 	handleJoinSession = () => {
 		let token = localStorage.getItem('token')
     token && setJwt(token) 
@@ -55,7 +55,18 @@ class SessionRow extends Component {
 			<Table.Body>
 			  <Table.Row>
 			    <Table.Cell>{this.props.time}</Table.Cell>
-			    <Table.Cell>{this.props.name}</Table.Cell>
+			    <Table.Cell>
+						{this.props.name}
+						<Modal trigger={<Button icon color='white'><Icon name='info circle' size='large' /></Button>}>
+							<Modal.Header>{this.props.name}</Modal.Header>
+							<Modal.Content>
+								<Modal.Description>
+									<p>Class Description.  Man braid hammock crucifix offal deep v echo park XOXO meh mumblecore pitchfork gastropub affogato intelligentsia listicle. Tacos semiotics mustache tumblr fashion axe 3 wolf moon cold-pressed glossier. Etsy typewriter kitsch helvetica lyft umami hella. Prism etsy waistcoat readymade lyft chillwave, squid subway tile retro slow-carb meh. Chicharrones glossier fanny pack, cliche viral aesthetic iceland kitsch migas salvia williamsburg slow-carb enamel pin vexillologist.</p>
+								</Modal.Description>
+							</Modal.Content>
+						</Modal>
+
+					</Table.Cell>
 			    <Table.Cell>{this.props.instructor}</Table.Cell>
 			    <Table.Cell>{joinButton}</Table.Cell>
 			  </Table.Row>
@@ -65,4 +76,3 @@ class SessionRow extends Component {
 }
 
 export default SessionRow;
-
