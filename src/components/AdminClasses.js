@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 import { api } from '../api/init';
 import CreateClassModal from './CreateClassModal';
+import AdminClassesRow from './AdminClassesRow';
 
 class AdminClasses extends Component {
 
   state = {
   	sessions: []
   }
-
 
   render() {
 
@@ -35,18 +35,14 @@ class AdminClasses extends Component {
               <Table.HeaderCell>Edit</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-
-          <Table.Body>
-            {sessions.map(session => (
-            <Table.Row>
-              	<Table.Cell>{session.day}</Table.Cell>
-              	<Table.Cell>{session.time}</Table.Cell>
-              	<Table.Cell>{session.name}</Table.Cell>
-              	<Table.Cell>{session.instructor}</Table.Cell>
-              	<Table.Cell>CRUD</Table.Cell>
-            </Table.Row>
+            {sessions.map(session => (<AdminClassesRow
+                                        key={session._id}
+                                        id={session._id}
+                                        day={session.day}
+                                        time={session.time}
+                                        name={session.name}
+                                        instructor={session.instructor} />
             ))}
-          </Table.Body>
         </Table>
       </div>
     );

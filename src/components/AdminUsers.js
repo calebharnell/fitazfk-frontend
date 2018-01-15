@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Icon, Table, Search } from 'semantic-ui-react'
 import { api, setJwt } from '../api/init';
-
+import AdminUsersRow from './AdminUsersRow';
 
 class AdminUsers extends Component {
 
@@ -52,12 +52,12 @@ class AdminUsers extends Component {
 
           <Table.Body>
 	          {filteredUsers.map(user =>(
-	          	  <Table.Row>
-	          	    <Table.Cell>{user.firstName} {user.lastName}</Table.Cell>
-	          	    <Table.Cell>{user._id}</Table.Cell>
-	          	    <Table.Cell>{user.email}</Table.Cell>
-	          	    <Table.Cell>{user.__v}</Table.Cell>
-	          	  </Table.Row>
+                <AdminUsersRow 
+                  firstName={user.firstName}
+                  lastName={user.lastName}
+                  id={user._id}
+                  email={user.email}
+                  active={user.active} />
 	          ))}
 	        </Table.Body>
 
