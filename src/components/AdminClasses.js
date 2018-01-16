@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Button } from 'semantic-ui-react';
 import { api } from '../api/init';
 import CreateClassModal from './CreateClassModal';
 import AdminClassesRow from './AdminClassesRow';
@@ -7,7 +7,67 @@ import AdminClassesRow from './AdminClassesRow';
 class AdminClasses extends Component {
 
   state = {
-  	sessions: []
+  	sessions: [],
+    createModalActive: false
+  }
+
+  handleCreateModalOpen = () => {
+    this.setState(prevState => ({
+      createModalActive: true
+    }))
+  }
+
+  handleCreateModalCancel = () => {
+    this.setState(prevState => ({
+      createModalActive: false
+    }))
+  }
+
+  handleCreate = (formData) => {
+    this.handleCreateModalCancel()
+    api.post('/sessions', {
+      name: formData.name,
+      instructor: formData.instructor,
+      day: formData.day,
+      time: formData.time,
+      floor: formData.floor
+    })
+    .then(() => {
+      this.fetchClasses()
+    })
+    .catch((error) => {
+      console.log('An error occured when trying to create class.', error)
+    })
+    console.log(formData)
+  }
+
+  handleUpdate = (classId, formData) => {
+    api.patch('/sessions', {
+      _id: classId,
+      name: formData.name,
+      instructor: formData.instructor,
+      day: formData.day,
+      time: formData.time,
+      floor: formData.floor
+    })
+    .then(() => {
+      this.fetchClasses()
+    })
+    .catch((error) => {
+      console.log('An error occured when trying to create class.', error)
+    })
+  }
+
+  fetchClasses() {
+    api.get('/sessions')
+      .then((response) => {
+        this.setState({
+          sessions: response.data
+        })
+      })
+      .catch((error) => {
+        console.log('An error occured retrieving sessions.', error)
+      })
   }
 
   render() {
@@ -21,7 +81,9 @@ class AdminClasses extends Component {
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell colSpan='6'>
-                <CreateClassModal floated='right'/>
+                <Button onClick={this.handleCreateModalOpen} floated='left'>
+                  Create New Class
+                </Button>
               </Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -41,24 +103,22 @@ class AdminClasses extends Component {
                                         day={session.day}
                                         time={session.time}
                                         name={session.name}
-                                        instructor={session.instructor} />
+                                        instructor={session.instructor} 
+                                        onUpdate={(formData) => this.handleUpdate(session._id, formData)} />
             ))}
         </Table>
+
+        {this.state.createModalActive && <CreateClassModal
+          onCancel={this.handleCreateModalCancel}
+          onSave={this.handleCreate}
+          />}
+
       </div>
     );
   }
 
   componentDidMount(){
-    api.get('/sessions')
-      .then((response) => {
-        this.setState({
-          sessions: response.data
-        })
-        console.log(this.state.sessions)
-      })
-      .catch((error) => {
-        console.log('An error occured retrieving sessions.', error)
-      })
+    this.fetchClasses()
   }
 }
 

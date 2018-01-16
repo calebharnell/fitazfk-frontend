@@ -4,14 +4,20 @@ import { api } from '../api/init';
 
 class CreateClassModal extends Component {
 
-	state = {
-		name: '',
-		instructor: '',
-		day: '',
-		time: '',
-		floor: '',
-		modalActive: false
-	}
+  constructor(props){
+    super(props)
+    this.state = {
+      name: props.name || '',
+      instructor: props.instructor || '',
+      day: props.day || '',
+      time: props.time || '',
+      floor: props.floor || ''
+    }
+  }
+
+
+
+
 
 	handleChange = (event) => {
 	  this.setState({
@@ -19,42 +25,21 @@ class CreateClassModal extends Component {
 	  })
 	}
 
-	handleSubmit = (event) => {
-	  event.preventDefault();
-    api.post('/sessions', {
-      name: this.state.name,
-      instructor: this.state.instructor,
-      day: this.state.day,
-      time: this.state.time,
-      floor: this.state.floor
-    })
-    .then(() => {
-    	this.setState({
-    		modalActive: false
-    	})
-    })
-    .catch((error) => {
-      console.log('An error occured when trying to create class.', error)
-    })
-	}
-
-	handleModal = () => {
-		this.setState(prevState => ({
-			modalActive: !this.state.modalActive
-		}))
-	}
+  handleSave = () => {
+    this.props.onSave(this.state)
+  }
 
 	render() {
-		const { name, instructor, day, time, floor, modalActive } = this.state
+		const { name, instructor, day, time, floor } = this.state
 
 		return (
 
-		  <Modal open={modalActive} trigger={<Button onClick={this.handleModal}>Create New Class</Button>} onClose={this.handleModal} >
+		  <Modal open={true} onClose={this.props.onCancel} >
 		    <Modal.Header>Create New Class</Modal.Header>
 		    <Modal.Content scrolling>
 
 		      <Modal.Description>
-  		      <Form className="create-class-form" onSubmit={this.handleSubmit}>
+  		      <Form className="create-class-form" onSubmit={this.handleSave}>
   		      	<Form.Group>
   		          <Form.Input label='Class Type' name='name' value={name} onChange={this.handleChange} width={16} />
   		        </Form.Group>
@@ -70,8 +55,8 @@ class CreateClassModal extends Component {
   		        <Form.Group>
   		          <Form.Input label='Floor' name='floor' value={floor} onChange={this.handleChange} width={16} />
   		        </Form.Group>
-  		        <Button type='submit'>Submit</Button>
-  		        <Button onClick={this.handleModal} color='red'>
+  		        <Button type="submit">Submit</Button>
+  		        <Button onClick={this.props.onCancel} color='red'>
   		          Cancel
   		        </Button>
   		      </Form>
