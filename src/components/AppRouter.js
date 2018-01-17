@@ -20,7 +20,6 @@ class AppRouter extends Component {
     activeItem: 'home',
     loggedIn: null,
     currentUser: null,
-    tokenExp: null,
     admin: false
   }
 
@@ -31,7 +30,6 @@ class AppRouter extends Component {
       activeItem: 'login',
       loggedIn: null,
       currentUser: null,
-      tokenExp: null,
       admin: false
     })
     localStorage.removeItem('token');
@@ -128,15 +126,19 @@ class AppRouter extends Component {
 
   componentDidMount() {
     let token = localStorage.getItem('token')
+
+    if (!token) {
+      return;
+    }
+    
     token && setJwt(token)
-    this.setState({
-      loggedIn: token
-    })
-    if (token) {
-      const decodedToken = jwtDecode(token)
-      console.log(decodedToken)
+
+    const decodedToken = jwtDecode(token)
+    if (isTokenExpired(decodedToken.exp)) {
+      this.handleLogOut()
+    } else {
       this.setState({
-        tokenExp: decodedToken.exp,
+        loggedIn: token,
         currentUser: decodedToken.sub
       })
     }
@@ -144,3 +146,5 @@ class AppRouter extends Component {
 }
 
 export default AppRouter;
+
+const isTokenExpired = (tokenExp) => Math.floor(Date.now() / 1000) > tokenExp;
