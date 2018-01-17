@@ -30,7 +30,8 @@ class AdminClasses extends Component {
       instructor: formData.instructor,
       day: formData.day,
       time: formData.time,
-      floor: formData.floor
+      floor: formData.floor,
+      maxAttendees: formData.maxAttendees
     })
     .then(() => {
       this.fetchClasses()
@@ -42,13 +43,15 @@ class AdminClasses extends Component {
   }
 
   handleUpdate = (classId, formData) => {
+    console.log(formData)
     api.patch('/sessions', {
       _id: classId,
       name: formData.name,
       instructor: formData.instructor,
       day: formData.day,
       time: formData.time,
-      floor: formData.floor
+      floor: formData.floor,
+      maxAttendees: formData.maxAttendees
     })
     .then(() => {
       this.fetchClasses()
@@ -77,7 +80,6 @@ class AdminClasses extends Component {
     return (
       <div>
         <Table celled compact definition>
-
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell colSpan='6'>
@@ -94,6 +96,7 @@ class AdminClasses extends Component {
               <Table.HeaderCell>Time</Table.HeaderCell>
               <Table.HeaderCell>Name</Table.HeaderCell>
               <Table.HeaderCell>Instructor</Table.HeaderCell>
+              <Table.HeaderCell>Attendees</Table.HeaderCell>
               <Table.HeaderCell>Edit</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -104,6 +107,9 @@ class AdminClasses extends Component {
                                         time={session.time}
                                         name={session.name}
                                         instructor={session.instructor} 
+                                        floor={session.floor} 
+                                        attendees={session.attendees} 
+                                        maxAttendees={session.maxAttendees} 
                                         onUpdate={(formData) => this.handleUpdate(session._id, formData)} />
             ))}
         </Table>

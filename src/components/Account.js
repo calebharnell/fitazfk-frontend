@@ -7,18 +7,20 @@ class Account extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      email: ''
+      email: '',
+      signupDate: ''
     }
   }
 
   render() {
-    const { firstName, lastName, email } = this.state;
+    const { firstName, lastName, email, signupDate } = this.state;
 
     return (
       <div>
         <h1>Account</h1>
         <p>Welcome, {firstName} {lastName}</p>
-        <p>{email}</p>
+        <p>Email: {email}</p>
+        <p>Joined On: {signupDate}</p>
       </div>
     );
   }
@@ -31,7 +33,8 @@ class Account extends Component {
         this.setState({
           firstName: response.data.firstName,
           lastName: response.data.lastName,
-          email: response.data.email
+          email: response.data.email,
+          signupDate: response.data.signupDate
         })
       })
       .catch((error) => {

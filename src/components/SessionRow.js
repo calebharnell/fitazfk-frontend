@@ -6,7 +6,7 @@ class SessionRow extends Component {
 	constructor(props){
 	  super(props)
 	  this.state = {
-	    attendees: this.props.attendees
+	    attendees: this.props.attendees || []
 	  }
 	}
 
