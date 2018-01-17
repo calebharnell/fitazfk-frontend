@@ -4,7 +4,7 @@ import { Segment, Icon } from 'semantic-ui-react'
 class Footer extends Component {
   render() {
     return (
-      <div>
+      <div className='footer'>
         <Segment>
           <h3>Connect with us on social media!</h3>
           <Icon name='facebook square' size='huge' link onClick={() => window.open('https://www.facebook.com/Fitazfk/', '_blank')}/>

@@ -32,6 +32,16 @@
   border-radius: 0;
   display: inline-flex;
   justify-content: space-between;
+  display: block;
+}
+
+.logo-nav {
+  max-width: 389px;
+  width: 100%;
+}
+
+.mobile-nav-dropdown {
+  display: block;
 }
 
 .home-embed {
@@ -55,4 +65,8 @@ h1 {
 
 .class-descriptions {
   padding: 10px;
+}
+
+.footer {
+  margin-top: 30px;
 }
