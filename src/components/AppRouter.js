@@ -40,9 +40,8 @@ class AppRouter extends Component {
     const decodedToken = jwtDecode(response.data.token)
     this.setState({
       loggedIn: response.data.token,
-      tokenExp: decodedToken.exp,
       currentUser: decodedToken.sub,
-      admin: response.data.admin || false
+      admin: decodedToken.role || false
     })
   }
 
@@ -139,7 +138,8 @@ class AppRouter extends Component {
     } else {
       this.setState({
         loggedIn: token,
-        currentUser: decodedToken.sub
+        currentUser: decodedToken.sub,
+        admin: decodedToken.role || false
       })
     }
   }

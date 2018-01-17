@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { api, setJwt } from '../api/init';
+import { api } from '../api/init';
 import { Table, Button, Icon, Modal } from 'semantic-ui-react';
 
 class SessionRow extends Component {
@@ -11,8 +11,6 @@ class SessionRow extends Component {
 	}
 
 	handleJoinSession = () => {
-		let token = localStorage.getItem('token')
-    token && setJwt(token) 
 		api.patch(`/sessions/join`, {
         _id: this.props.id
       })
@@ -27,8 +25,6 @@ class SessionRow extends Component {
 	}
 
 	handleLeaveSession = () => {
-		let token = localStorage.getItem('token')
-    token && setJwt(token) 
 		api.patch(`/sessions/leave`, {
         _id: this.props.id
       })
@@ -57,7 +53,7 @@ class SessionRow extends Component {
 			    <Table.Cell>{this.props.time}</Table.Cell>
 			    <Table.Cell>
 						{this.props.name}
-						<Modal trigger={<Button icon color='white'><Icon name='info circle' size='large' /></Button>}>
+						<Modal trigger={<Button icon color='white' size='small'><Icon name='info circle' size='large' /></Button>}>
 							<Modal.Header>{this.props.name}</Modal.Header>
 							<Modal.Content>
 								<Modal.Description>
