@@ -9,4 +9,6 @@ const setJwt = (token) => {
 	api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 }
 
+// Fuction that takes response and checks if unauth, then logs out and redirects
+
 export { api, setJwt }
