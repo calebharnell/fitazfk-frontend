@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Segment, Icon } from 'semantic-ui-react';
+import { Menu, Segment, Icon, Button } from 'semantic-ui-react';
 import { BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
 import { setJwt } from '../api/init';
 import Home from './Home';
@@ -23,7 +23,8 @@ class AppRouter extends Component {
       loggedIn: null,
       currentUser: null,
       admin: false,
-      isDesktop: true
+      isDesktop: true,
+      mobileNavbarOpen: false
     }
     this.updatePredicate = this.updatePredicate.bind(this);
   }
@@ -32,17 +33,29 @@ class AppRouter extends Component {
     this.setState({ isDesktop: window.innerWidth > 1000 });
   }
 
-  handleItemClick = (e, {name}) => this.setState({activeItem: name})
+  handleItemClick = (e, {name}) => {
+    this.setState({
+      activeItem: name,
+      mobileNavbarOpen: false
+    })
+  }
 
   handleLogOut = () => {
     this.setState({
       activeItem: 'login',
       loggedIn: null,
       currentUser: null,
-      admin: false
+      admin: false,
+      mobileNavbarOpen: false
     })
     localStorage.removeItem('token');
     window.location.reload();
+  }
+
+  toggleMobileNavbar = () => {
+    this.setState({
+      mobileNavbarOpen: !this.state.mobileNavbarOpen
+    })
   }
 
   handleLoginResponse = (response) => {
@@ -52,32 +65,15 @@ class AppRouter extends Component {
       currentUser: decodedToken.sub,
       admin: decodedToken.role || false
     })
-  }
+  };
 
   render() {
+
     const { activeItem, loggedIn, currentUser, isDesktop } = this.state;
 
-    // let loggedInButtons = null
-    // if (!loggedIn) {
-    //   loggedInButtons = <Menu secondary stackable>
-    //                       <Menu.Item as={Link} to='/sign-up' name='sign-up' active={activeItem === 'sign-up'} onClick={this.handleItemClick}/>
-    //                       <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/>
-    //                     </Menu>
-    // } else if (loggedIn && this.state.admin) {
-    //   loggedInButtons = <Menu secondary stackable>
-    //                       <Menu.Item as={Link} to='/admin/classes' name='adminClasses' active={activeItem === 'adminClasses'} onClick={this.handleItemClick}/>
-    //                       <Menu.Item as={Link} to='/admin/users' name='adminUsers' active={activeItem === 'adminUsers'} onClick={this.handleItemClick}/>
-                          // <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
-                          // <Menu.Item as={Link} to='/logout' name='logout' onClick={this.handleLogOut}/>
-    //                     </Menu>
-    // } else {
-    //   loggedInButtons = <Menu secondary stackable>
-    //                       <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
-    //                       <Menu.Item as={Link} to='/login' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
-    //                     </Menu>
-    // }
-
     let responsiveNavbar = null;
+    let mobileNavDropdown = null;
+
     if (isDesktop && !loggedIn) {
       responsiveNavbar =  <Menu secondary stackable>
                             <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
@@ -85,20 +81,10 @@ class AppRouter extends Component {
                             <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/login' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
+                            <Menu.Item as={Link} to='/sign-up' name='sign-up' active={activeItem === 'sign-up'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/>
                           </Menu>
-    } else if (isDesktop && loggedIn) {
-      responsiveNavbar =  <Menu secondary stackable>
-                            <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/logout' name='logout' onClick={this.handleLogOut}/>
-                          </Menu>
-    } else if (isDesktop && loggedIn && this.state.admin) {
+    } else if (isDesktop && this.state.admin) {
       responsiveNavbar =  <Menu secondary stackable>
                             <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
@@ -110,18 +96,69 @@ class AppRouter extends Component {
                             <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/logout' name='logout' onClick={this.handleLogOut}/>
                           </Menu>
-    }
+    } else if (isDesktop && loggedIn) {
+      responsiveNavbar =  <Menu secondary stackable>
+                            <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/logout' name='logout' onClick={this.handleLogOut}/>
+                          </Menu>
+    } else {
+      mobileNavDropdown = <div className='mobile-nav-dropdown'>
+                            <Segment>
+                              <Button secondary fluid size='large'icon labelPosition='right' onClick={this.toggleMobileNavbar}>Menu<Icon name='chevron down' size='medium'/></Button>
+                            </Segment>
+                          </div>
+    };
 
+    let mobileNavbarContents = null;
+    if (!isDesktop && this.state.mobileNavbarOpen) {
+      mobileNavbarContents = <Menu secondary vertical fluid>
+                              <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/login' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
+                            </Menu>
+    } else if (!isDesktop && this.state.admin) {
+      mobileNavbarContents = <Menu secondary vertical fluid>
+                              <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/admin/classes' name='adminClasses' active={activeItem === 'adminClasses'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/admin/users' name='adminUsers' active={activeItem === 'adminUsers'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
+                              <Menu.Item as={Link} to='/login' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
+                            </Menu>
+    } else if (!isDesktop && loggedIn)
+    mobileNavbarContents = <Menu secondary vertical fluid>
+                            <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/login' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
+                          </Menu>
     return (
         <Router>
           <div className="NavBar">
             <Segment className="navbar">
-              <Menu secondary fluid>
+              <Menu secondary fluid centered>
                 <Menu.Item className='logo-nav'>
-                  <Logo />
+                  <Logo/>
                 </Menu.Item>
                 {responsiveNavbar}
               </Menu>
+                {mobileNavDropdown}
+                {mobileNavbarContents}
             </Segment>
 
             <Route exact path="/" component={Home}/>
@@ -171,7 +208,6 @@ class AppRouter extends Component {
     }
     token && setJwt(token)
     const decodedToken = jwtDecode(token)
-    console.log(decodedToken.role)
     if (isTokenExpired(decodedToken.exp)) {
       this.handleLogOut()
     } else {
