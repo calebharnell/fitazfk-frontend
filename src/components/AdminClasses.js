@@ -60,6 +60,18 @@ class AdminClasses extends Component {
       console.log('An error occured when trying to create class.', error)
     })
   }
+  
+  handleDelete = (classId) => {
+    api.delete('/sessions', {
+      _id: classId
+    })
+    .then(() => {
+      this.fetchClasses()
+    })
+    .catch((error) => {
+      console.log('An error occured when trying to delete class.', error)
+    })
+  }
 
   fetchClasses() {
     api.get('/sessions')

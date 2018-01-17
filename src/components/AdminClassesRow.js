@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Table, Button } from 'semantic-ui-react'
 import CreateClassModal from './CreateClassModal';
+import DeleteClassModal from './DeleteClassModal';
 
 class AdminClassesRow extends Component {
 	constructor(props){
 	  super(props)
 	  this.state = {
-	  	createModalActive: false
+	  	createModalActive: false,
+	  	deleteModalOpen: false
 	  }
 	}
 
@@ -27,6 +29,23 @@ class AdminClassesRow extends Component {
 		this.props.onUpdate(formData)
 	}
 
+	handleDeleteModalOpen = () => {
+	  this.setState(prevState => ({
+	    deleteModalOpen: true
+	  }))
+	}
+
+	handleDeleteModalCancel = () => {
+	  this.setState(prevState => ({
+	    deleteModalOpen: false
+	  }))
+	}
+
+	handleDelete = () => {
+		this.handleDeleteModalCancel()
+		this.props.onDelete()
+	}
+
   render() {
 		return (
 			<Table.Body>
@@ -38,6 +57,7 @@ class AdminClassesRow extends Component {
 				  	<Table.Cell>{this.props.attendees ? `${this.props.attendees.length} / ${this.props.maxAttendees}` : '0'}</Table.Cell>
 				  	<Table.Cell>
 				  		<Button onClick={this.handleCreateModalOpen}>Edit</Button>
+				  		<Button onClick={this.handleDeleteModalOpen}>Delete</Button>
 				  	</Table.Cell>
 				</Table.Row>
 				{this.state.createModalActive && <CreateClassModal
@@ -49,6 +69,10 @@ class AdminClassesRow extends Component {
 				  floor={this.props.floor}
 				  instructor={this.props.instructor}
 				  maxAttendees={this.props.maxAttendees}
+				  />}				
+				{this.state.deleteModalOpen && <DeleteClassModal
+				  onCancel={this.handleDeleteModalCancel}
+				  onDelete={this.handleDelete}
 				  />}
 			</Table.Body>
 		)
