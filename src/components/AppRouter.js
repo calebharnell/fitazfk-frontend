@@ -72,7 +72,7 @@ class AppRouter extends Component {
 
   render() {
 
-    const { activeItem, loggedIn, currentUser, isDesktop } = this.state;
+    const { activeItem, loggedIn, currentUser, isDesktop, admin, mobileNavbarOpen } = this.state;
 
     let responsiveNavbar = null;
     let mobileNavDropdown = null;
@@ -87,7 +87,7 @@ class AppRouter extends Component {
                             <Menu.Item as={Link} to='/sign-up' name='sign-up' active={activeItem === 'sign-up'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick}/>
                           </Menu>
-    } else if (isDesktop && this.state.admin) {
+    } else if (isDesktop && admin) {
       responsiveNavbar =  <Menu secondary>
                             <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
@@ -118,7 +118,7 @@ class AppRouter extends Component {
     };
 
     let mobileNavbarContents = null;
-    if (!isDesktop && this.state.mobileNavbarOpen) {
+    if (!isDesktop && !loggedIn && mobileNavbarOpen) {
       mobileNavbarContents = <Menu secondary vertical fluid>
                               <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
                               <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
@@ -128,7 +128,7 @@ class AppRouter extends Component {
                               <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
                               <Menu.Item as={Link} to='/login' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
                             </Menu>
-    } else if (!isDesktop && this.state.admin && this.state.mobileNavbarOpen) {
+    } else if (!isDesktop && admin && mobileNavbarOpen) {
       mobileNavbarContents = <Menu secondary vertical fluid>
                               <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
                               <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
@@ -140,7 +140,7 @@ class AppRouter extends Component {
                               <Menu.Item as={Link} to='/account' name='account' active={activeItem === 'account'} onClick={this.handleItemClick}/>
                               <Menu.Item as={Link} to='/login' name='logout' active={activeItem === 'login'} onClick={this.handleLogOut}/>
                             </Menu>
-    } else if (!isDesktop && loggedIn && this.state.mobileNavbarOpen)
+    } else if (!isDesktop && loggedIn && mobileNavbarOpen)
     mobileNavbarContents = <Menu secondary vertical fluid>
                             <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/book-classes' name='book-classes' active={activeItem === 'book-classes'} onClick={this.handleItemClick}/>
