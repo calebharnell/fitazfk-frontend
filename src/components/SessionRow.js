@@ -3,7 +3,7 @@ import { Table, Button, Icon, Modal } from 'semantic-ui-react';
 
 const SessionRow = ({ session, currentUser, handleJoinSession, handleLeaveSession }) => {
 	let joinButton = null
-	if (session.attendees.includes(currentUser)) {
+	if (session.attendees.some(attendee => attendee._id === currentUser._id)) {
 		joinButton = <Button 
 									size='mini' 
 									onClick={handleLeaveSession}>
