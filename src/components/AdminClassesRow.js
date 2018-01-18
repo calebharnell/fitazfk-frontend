@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'semantic-ui-react'
+import { Table, Button, Dropdown } from 'semantic-ui-react'
 import CreateClassModal from './CreateClassModal';
 import DeleteClassModal from './DeleteClassModal';
+import AttendeesModal from './AttendeesModal';
 
 class AdminClassesRow extends Component {
 	constructor(props){
 	  super(props)
 	  this.state = {
 	  	createModalActive: false,
-	  	deleteModalOpen: false
+	  	deleteModalOpen: false,
+	  	attendeesModalOpen: false
 	  }
 	}
 
@@ -42,11 +44,24 @@ class AdminClassesRow extends Component {
 	}
 
 	handleConfirmDelete = () => {
-		// this.handleDeleteModalCancel()
+		this.handleDeleteModalCancel()
 		this.props.onDelete(this.props.id)
 	}
 
+	handleAttendeesModalOpen = () => {
+	  this.setState(prevState => ({
+	    attendeesModalOpen: true
+	  }))
+	}
+
+	handleAttendeesModalCancel = () => {
+	  this.setState(prevState => ({
+	    attendeesModalOpen: false
+	  }))
+	}
+
   render() {
+
 		return (
 			<Table.Body>
 				<Table.Row>
@@ -54,10 +69,13 @@ class AdminClassesRow extends Component {
 				  	<Table.Cell>{this.props.time}</Table.Cell>
 				  	<Table.Cell>{this.props.name}</Table.Cell>
 				  	<Table.Cell>{this.props.instructor}</Table.Cell>
-				  	<Table.Cell>{this.props.attendees ? `${this.props.attendees.length} / ${this.props.maxAttendees}` : '0'}</Table.Cell>
 				  	<Table.Cell>
-				  		<Button onClick={this.handleCreateModalOpen}>Edit</Button>
-				  		<Button onClick={this.handleDeleteModalOpen}>Delete</Button>
+				  		{this.props.attendees ? `${this.props.attendees.length} / ${this.props.maxAttendees}` : '0'}
+				  		<Button floated='right' onClick={this.handleAttendeesModalOpen}>Show Attendees</Button>
+				  	</Table.Cell>
+				  	<Table.Cell>
+				  		<Button floated='right' onClick={this.handleCreateModalOpen}>Edit</Button>
+				  		<Button floated='right' onClick={this.handleDeleteModalOpen}>Delete</Button>
 				  	</Table.Cell>
 				</Table.Row>
 				{this.state.createModalActive && <CreateClassModal
@@ -73,9 +91,20 @@ class AdminClassesRow extends Component {
 				{this.state.deleteModalOpen && <DeleteClassModal
 				  onCancel={this.handleDeleteModalCancel}
 				  onDelete={this.handleConfirmDelete}
+				  />}				
+				{this.state.attendeesModalOpen && <AttendeesModal
+				  onCancel={this.handleAttendeesModalCancel}
+				  attendees={this.props.attendees} 
+				  name={this.props.name}
+				  instructor={this.props.instructor}
+				  day={this.props.day}
 				  />}
 			</Table.Body>
 		)
+	}
+
+	componentDidMount(){
+		console.log(this.props.attendees)
 	}
 }
 
