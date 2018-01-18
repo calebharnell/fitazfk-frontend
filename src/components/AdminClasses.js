@@ -62,8 +62,7 @@ class AdminClasses extends Component {
   }
   
   handleDelete = (classId) => {
-    api.delete('/sessions', {
-      _id: classId
+    api.delete(`/sessions/${classId}`, {
     })
     .then(() => {
       this.fetchClasses()

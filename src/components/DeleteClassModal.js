@@ -9,16 +9,16 @@ export default class DeleteClassModal extends Component {
 
 	render() {
 		return (
-			<Modal open={true} onClose={this.props.onCancel} basic size='small'>
-			  <Header icon='archive' content='Delete All Instances Of This Class' />
+			<Modal open={true} onClose={this.props.onCancel} size='small'>
+			  <Header icon='delete' content='Delete All Instances Of This Class' />
 			  <Modal.Content>
 			    <p>Are you sure you want to delete this class? Once this is done you cannot reverse this action.</p>
 			  </Modal.Content>
 			  <Modal.Actions>
-			    <Button onClick={this.props.onCancel} basic color='red' inverted>
+			    <Button onClick={this.props.onCancel} color='red'>
 			      <Icon name='remove' /> No
 			    </Button>
-			    <Button onClick={this.props.onDelete} color='green' inverted>
+			    <Button onClick={this.props.onDelete} color='green'>
 			      <Icon name='checkmark' /> Yes
 			    </Button>
 			  </Modal.Actions>

@@ -42,8 +42,8 @@ class AdminClassesRow extends Component {
 	}
 
 	handleConfirmDelete = () => {
-		this.handleDeleteModalCancel()
-		this.props.onDelete
+		// this.handleDeleteModalCancel()
+		this.props.onDelete(this.props.id)
 	}
 
   render() {
