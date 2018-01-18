@@ -11,17 +11,21 @@ class SessionRow extends Component {
 	}
 
 	handleJoinSession = () => {
-		api.patch(`/sessions/join`, {
-        _id: this.props.id
-      })
-		  .then((response) => {
-		    this.setState({
-		    	attendees: [...this.state.attendees, this.props.currentUser]
-		    })
-		  })
-		  .catch((error) => {
-		    console.log('An error occured when trying to book into the session.', error)
-		  })
+		if (this.props.attendees.length < this.props.maxAttendees) {
+			api.patch(`/sessions/join`, {
+	        _id: this.props.id
+	      })
+			  .then((response) => {
+			    this.setState({
+			    	attendees: [...this.state.attendees, this.props.currentUser]
+			    })
+			  })
+			  .catch((error) => {
+			    console.log('An error occured when trying to book into the session.', error)
+			  })
+			} else {
+				//ADD AN ALERT OR SOMETHING HERE FOR THE USER TO SEE IF THE CLASS IS FULL
+			}
 	}
 
 	handleLeaveSession = () => {
@@ -64,6 +68,7 @@ class SessionRow extends Component {
 
 					</Table.Cell>
 			    <Table.Cell>{this.props.instructor}</Table.Cell>
+			    <Table.Cell>{`${this.props.attendees.length} / ${this.props.maxAttendees}`}</Table.Cell>
 			    <Table.Cell>{joinButton}</Table.Cell>
 			  </Table.Row>
 			</Table.Body>
