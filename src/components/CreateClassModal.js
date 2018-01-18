@@ -36,7 +36,7 @@ class CreateClassModal extends Component {
 		      <Modal.Description>
   		      <Form className="create-class-form" onSubmit={this.handleSave}>
   		      	<Form.Group>
-  		          <Form.Input label='Class Type' name='name' value={name} onChange={this.handleChange} width={16} />
+  		          <Form.Input autoFocus label='Class Type' name='name' value={name} onChange={this.handleChange} width={16} />
   		        </Form.Group>
   		        <Form.Group>
   		          <Form.Input label='Instructor' name='instructor' value={instructor} onChange={this.handleChange} width={16} />
