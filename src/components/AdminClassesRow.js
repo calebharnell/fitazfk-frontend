@@ -54,6 +54,7 @@ class AdminClassesRow extends Component {
 				  	<Table.Cell>{this.props.time}</Table.Cell>
 				  	<Table.Cell>{this.props.name}</Table.Cell>
 				  	<Table.Cell>{this.props.instructor}</Table.Cell>
+				  	<Table.Cell>{this.props.attendees ? `${this.props.attendees.length} / ${this.props.maxAttendees}` : '0'}</Table.Cell>
 				  	<Table.Cell>
 				  		<Button onClick={this.handleCreateModalOpen}>Edit</Button>
 				  		<Button onClick={this.handleDeleteModalOpen}>Delete</Button>
@@ -65,7 +66,9 @@ class AdminClassesRow extends Component {
 				  day={this.props.day}
 				  time={this.props.time}
 				  name={this.props.name}
+				  floor={this.props.floor}
 				  instructor={this.props.instructor}
+				  maxAttendees={this.props.maxAttendees}
 				  />}				
 				{this.state.deleteModalOpen && <DeleteClassModal
 				  onCancel={this.handleDeleteModalCancel}

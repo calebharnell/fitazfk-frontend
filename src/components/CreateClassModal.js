@@ -11,7 +11,8 @@ class CreateClassModal extends Component {
       instructor: props.instructor || '',
       day: props.day || '',
       time: props.time || '',
-      floor: props.floor || ''
+      floor: props.floor || '',
+      maxAttendees: props.maxAttendees || ''
     }
   }
 
@@ -26,14 +27,12 @@ class CreateClassModal extends Component {
   }
 
 	render() {
-		const { name, instructor, day, time, floor } = this.state
+		const { name, instructor, day, time, floor, maxAttendees } = this.state
 
 		return (
-
 		  <Modal open={true} onClose={this.props.onCancel} >
 		    <Modal.Header>Create New Class</Modal.Header>
 		    <Modal.Content scrolling>
-
 		      <Modal.Description>
   		      <Form className="create-class-form" onSubmit={this.handleSave}>
   		      	<Form.Group>
@@ -48,8 +47,11 @@ class CreateClassModal extends Component {
   		        <Form.Group>
   		          <Form.Input label='Time' name='time' value={time} onChange={this.handleChange} width={16} />
   		        </Form.Group>
+              <Form.Group>
+                <Form.Input label='Floor' name='floor' value={floor} onChange={this.handleChange} width={16} />
+              </Form.Group>
   		        <Form.Group>
-  		          <Form.Input label='Floor' name='floor' value={floor} onChange={this.handleChange} width={16} />
+  		          <Form.Input label='Max Attendees' name='maxAttendees' value={maxAttendees} onChange={this.handleChange} width={16} />
   		        </Form.Group>
   		        <Button type="submit">Submit</Button>
   		        <Button onClick={this.props.onCancel} color='red'>
@@ -57,7 +59,6 @@ class CreateClassModal extends Component {
   		        </Button>
   		      </Form>
 		      </Modal.Description>
-
 		    </Modal.Content>
 		  </Modal>
 		)
