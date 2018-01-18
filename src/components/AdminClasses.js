@@ -84,6 +84,18 @@ class AdminClasses extends Component {
       })
   }
 
+  handleLeaveClass = (classId) => {
+    api.patch(`/sessions/leave`, {
+        _id: classId
+      })
+      .then((response) => {
+        this.fetchClasses()
+      })
+      .catch((error) => {
+        console.log('An error occured when trying to leave the session.', error)
+      })
+  }
+
   render() {
 
   const { sessions } = this.state
@@ -122,7 +134,8 @@ class AdminClasses extends Component {
                                         attendees={session.attendees} 
                                         maxAttendees={session.maxAttendees} 
                                         onUpdate={(formData) => this.handleUpdate(session._id, formData)}
-                                        onDelete={this.handleDelete} />
+                                        onDelete={this.handleDelete}
+                                        onRemove={() => this.handleLeaveClass(session._id)} />
             ))}
         </Table>
 
