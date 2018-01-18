@@ -98,6 +98,7 @@ class AdminClassesRow extends Component {
 				  name={this.props.name}
 				  instructor={this.props.instructor}
 				  day={this.props.day}
+				  onRemove={this.props.onRemove}
 				  />}
 			</Table.Body>
 		)
