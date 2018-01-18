@@ -7,10 +7,11 @@ const SessionsTable = ({ day, sessions, currentUser }) => {
   	<Table attached striped>
   	    <Table.Header>
   	      <Table.Row>
-  	        <Table.HeaderCell width='six'>{day}</Table.HeaderCell>
-  	        <Table.HeaderCell width='six'>Class</Table.HeaderCell>
-            <Table.HeaderCell width='six'>Instructor</Table.HeaderCell>
-  	        <Table.HeaderCell width='six'>Action</Table.HeaderCell>
+  	        <Table.HeaderCell width='four'>{day}</Table.HeaderCell>
+  	        <Table.HeaderCell width='four'>Class</Table.HeaderCell>
+            <Table.HeaderCell width='four'>Instructor</Table.HeaderCell>
+            <Table.HeaderCell width='four'>Class Size</Table.HeaderCell>
+  	        <Table.HeaderCell width='four'>Action</Table.HeaderCell>
   	      </Table.Row>
   	    </Table.Header>
   	    {
@@ -21,6 +22,7 @@ const SessionsTable = ({ day, sessions, currentUser }) => {
                                                             name={session.name} 
                                                             instructor={session.instructor}
                                                             attendees={session.attendees}
+                                                            maxAttendees={session.maxAttendees}
                                                             currentUser={currentUser} />)
         }
   	</Table>
