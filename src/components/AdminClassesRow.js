@@ -41,9 +41,9 @@ class AdminClassesRow extends Component {
 	  }))
 	}
 
-	handleDelete = () => {
+	handleConfirmDelete = () => {
 		this.handleDeleteModalCancel()
-		this.props.onDelete()
+		this.props.onDelete
 	}
 
   render() {
@@ -72,7 +72,7 @@ class AdminClassesRow extends Component {
 				  />}				
 				{this.state.deleteModalOpen && <DeleteClassModal
 				  onCancel={this.handleDeleteModalCancel}
-				  onDelete={this.handleDelete}
+				  onDelete={this.handleConfirmDelete}
 				  />}
 			</Table.Body>
 		)

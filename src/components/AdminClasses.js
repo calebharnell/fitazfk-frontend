@@ -118,11 +118,12 @@ class AdminClasses extends Component {
                                         day={session.day}
                                         time={session.time}
                                         name={session.name}
-                                        instructor={session.instructor} 
+                                        instructor={session.instructor}
                                         floor={session.floor} 
                                         attendees={session.attendees} 
                                         maxAttendees={session.maxAttendees} 
-                                        onUpdate={(formData) => this.handleUpdate(session._id, formData)} />
+                                        onUpdate={(formData) => this.handleUpdate(session._id, formData)}
+                                        onDelete={this.handleDelete} />
             ))}
         </Table>
 
