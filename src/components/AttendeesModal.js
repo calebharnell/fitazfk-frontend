@@ -20,7 +20,7 @@ export default class ModalExampleScrollingContent extends Component {
 			      		    <Button onClick={this.props.onRemove}>Remove</Button>
 			      		  </List.Content>
 			      		  <List.Content>
-			      		    {attendee}
+			      		    {attendee.firstName} {attendee.lastName}
 			      		  </List.Content>
 			      		</List.Item>
 			      		))}
