@@ -94,7 +94,7 @@ class AdminClassesRow extends Component {
 				  />}				
 				{this.state.attendeesModalOpen && <AttendeesModal
 				  onCancel={this.handleAttendeesModalCancel}
-				  attendees={this.props.attendees} 
+				  attendees={this.props.attendees}
 				  name={this.props.name}
 				  instructor={this.props.instructor}
 				  day={this.props.day}
