@@ -27,6 +27,7 @@ class Home extends Component {
           <h2>FITAZFK ON 7 NEWS</h2>
           <VideoEmbed />
         </Segment>
+        <Divider />
         <ContactDetails />
       </div>
     );
