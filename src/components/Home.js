@@ -16,7 +16,7 @@ class Home extends Component {
             whatever that may be.</h4>
             <h4>Feeling comfortable amongst state of the art equipment, whilst taking your body to your next level is what we’re all about.</h4>
           <Divider />
-            <Button className='free-class-button' primary><h1>Click here to register for your free class!</h1></Button>
+            <Button primary><h1>Click here to register for your free class!</h1></Button>
           <Divider />
             <h2>WE ARE FITAZFK</h2>
             <h4>FitazFK Gym was founded by 3 fitness experts.</h4>
