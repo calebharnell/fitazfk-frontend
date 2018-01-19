@@ -99,13 +99,13 @@ class AdminClassesRow extends Component {
 				  instructor={this.props.instructor}
 				  day={this.props.day}
 				  onRemove={this.props.onRemove}
+				  sessionId={this.props.id}
 				  />}
 			</Table.Body>
 		)
 	}
 
 	componentDidMount(){
-		console.log(this.props.attendees)
 	}
 }
 

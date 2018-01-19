@@ -17,7 +17,7 @@ export default class ModalExampleScrollingContent extends Component {
 			      	{this.props.attendees.map(attendee => (
 			      		<List.Item>
 			      		  <List.Content floated='right'>
-			      		    <Button onClick={this.props.onRemove}>Remove</Button>
+			      		    <Button onClick={() => this.props.onRemove(this.props.sessionId, attendee._id)}>Remove</Button>
 			      		  </List.Content>
 			      		  <List.Content>
 			      		    {attendee.firstName} {attendee.lastName}
