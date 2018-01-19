@@ -199,7 +199,7 @@ class AppRouter extends Component {
               )}
             />
             <Route exact path="/logout" render={() => (
-              <Redirect to="/login"/>
+              <Redirect to="/"/>
               )}/>
           </div>
         </Router>
