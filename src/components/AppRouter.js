@@ -167,7 +167,7 @@ class AppRouter extends Component {
                 {mobileNavDropdown}
                 {mobileNavbarContents}
             </Segment>
-            <Route path="/" component={Home}/>
+            <Route exact path="/" component={Home}/>
             <Route
               path="/sign-up"
               render={(routeProps) => (
