@@ -66,8 +66,8 @@ class AppRouter extends Component {
     this.setState({
       loggedIn: response.data.token,
       currentUser: {
-          _id: decodedToken.sub, 
-          firstName: decodedToken.firstName, 
+          _id: decodedToken.sub,
+          firstName: decodedToken.firstName,
           lastName: decodedToken.lastName
         },
       admin: decodedToken.role || false
@@ -167,8 +167,7 @@ class AppRouter extends Component {
                 {mobileNavDropdown}
                 {mobileNavbarContents}
             </Segment>
-
-            <Route exact path="/" component={Home}/>
+            <Route path="/" component={Home}/>
             <Route
               path="/sign-up"
               render={(routeProps) => (
@@ -221,8 +220,8 @@ class AppRouter extends Component {
       this.setState({
         loggedIn: token,
         currentUser: {
-          _id: decodedToken.sub, 
-          firstName: decodedToken.firstName, 
+          _id: decodedToken.sub,
+          firstName: decodedToken.firstName,
           lastName: decodedToken.lastName
         },
         admin: decodedToken.role || false

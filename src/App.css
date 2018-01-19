@@ -44,8 +44,19 @@
   display: block;
 }
 
+.home-component .home-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 4  0px;
+}
+
 .home-embed {
-  margin: 10px 20px 20px 20px;
+  margin: auto;
+  max-width: 800px;
+}
+
+.free-class-button {
+  margin-top: 20px;
 }
 
 .google-map {

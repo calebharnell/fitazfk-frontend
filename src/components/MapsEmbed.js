@@ -14,7 +14,7 @@ class MapsEmbed extends Component {
 
   render() {
     return (
-      <Segment>
+      <div>
         <Dimmer active={this.state.isLoading}>
           <Loader />
         </Dimmer>
@@ -30,7 +30,7 @@ class MapsEmbed extends Component {
           }}
           source='googlemaps'
         />
-      </Segment>
+      </div>
     )
   }
 
