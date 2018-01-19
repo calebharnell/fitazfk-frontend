@@ -84,8 +84,9 @@ class AdminClasses extends Component {
       })
   }
 
-  handleLeaveClass = (classId) => {
-    api.patch(`/sessions/leave`, {
+  handleLeaveClass = (classId, attendeeId) => {
+    console.log(classId, attendeeId)
+    api.patch(`/admin/sessions/remove/${attendeeId}`, {
         _id: classId
       })
       .then((response) => {
@@ -135,7 +136,7 @@ class AdminClasses extends Component {
                                         maxAttendees={session.maxAttendees} 
                                         onUpdate={(formData) => this.handleUpdate(session._id, formData)}
                                         onDelete={this.handleDelete}
-                                        onRemove={() => this.handleLeaveClass(session._id)} />
+                                        onRemove={this.handleLeaveClass} />
             ))}
         </Table>
 
