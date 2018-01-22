@@ -12,6 +12,8 @@ import Contact from './Contact';
 import Account from './Account';
 import AdminClasses from './AdminClasses';
 import AdminUsers from './AdminUsers';
+import LoginMessage from './LoginMessage';
+import LogoutMessage from './LogoutMessage';
 import Logo from './Logo';
 import jwtDecode from 'jwt-decode';
 
@@ -68,7 +70,8 @@ class AppRouter extends Component {
       currentUser: {
           _id: decodedToken.sub,
           firstName: decodedToken.firstName,
-          lastName: decodedToken.lastName
+          lastName: decodedToken.lastName,
+          email: decodedToken.email
         },
       admin: decodedToken.role || false
     })
@@ -167,6 +170,11 @@ class AppRouter extends Component {
                 {mobileNavDropdown}
                 {mobileNavbarContents}
             </Segment>
+            <div>
+              {this.state.loggedIn && <LoginMessage
+                                        currentUser={this.state.currentUser} />}
+              {!this.state.loggedIn && <LogoutMessage/>}
+            </div>
             <Route exact path="/" component={Home}/>
             <Route
               path="/sign-up"
@@ -222,7 +230,8 @@ class AppRouter extends Component {
         currentUser: {
           _id: decodedToken.sub,
           firstName: decodedToken.firstName,
-          lastName: decodedToken.lastName
+          lastName: decodedToken.lastName,
+          email: decodedToken.email
         },
         admin: decodedToken.role || false
       })
