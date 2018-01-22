@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown, Button } from 'semantic-ui-react'
 
 const options = [
-  { key: 'FK STRENGTH FULL BODY', text: 'FK STRENGTH FULL BODY', value: 'FK STRENGTH FULL BODY' },
-  { key: 'FK STRENGTH UPPER BODY', text: 'FK STRENGTH UPPER BODY', value: 'FK STRENGTH UPPER BODY' },
-  { key: 'FK STRENGTH LOWER BODY', text: 'FK STRENGTH LOWER BODY', value: 'FK STRENGTH LOWER BODY' },
+  { key: 'FK - STRENGTH FULL BODY', text: 'FK - STRENGTH FULL BODY', value: 'FK - STRENGTH FULL BODY' },
+  { key: 'FK - STRENGTH UPPER BODY', text: 'FK - STRENGTH UPPER BODY', value: 'FK - STRENGTH UPPER BODY' },
+  { key: 'FK - STRENGTH LOWER BODY', text: 'FK - STRENGTH LOWER BODY', value: 'FK - STRENGTH LOWER BODY' },
   { key: 'FITYAZ CORE', text: 'FITYAZ CORE', value: 'FITYAZ CORE' },
-  { key: 'FK HIIT SPIN', text: 'FK HIIT SPIN', value: 'FK HIIT SPIN' },
-  { key: 'FK HIIT FREESTYLE', text: 'FK HIIT FREESTYLE', value: 'FK HIIT FREESTYLE' },
+  { key: 'FK - HIIT SPIN', text: 'FK - HIIT SPIN', value: 'FK - HIIT SPIN' },
+  { key: 'FK - HIIT FREESTYLE', text: 'FK - HIIT FREESTYLE', value: 'FK - HIIT FREESTYLE' },
   { key: 'HIIT BOXING', text: 'HIIT BOXING', value: 'HIIT BOXING' },
   { key: 'BOXING', text: 'BOXING', value: 'BOXING' },
   { key: 'KICKBOXING', text: 'KICKBOXING', value: 'KICKBOXING' },

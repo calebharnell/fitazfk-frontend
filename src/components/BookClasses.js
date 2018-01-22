@@ -3,7 +3,7 @@ import { api } from '../api/init';
 import SessionsTable from './SessionsTable';
 import DayRadioFilters from './DayRadioFilters';
 import ClassSelectorDropdown from './ClassSelectorDropdown';
-import { Dimmer, Loader } from 'semantic-ui-react'
+import { Dimmer, Loader, Segment, Grid } from 'semantic-ui-react';
 
 class BookClasses extends Component {
   constructor(props){
@@ -19,7 +19,6 @@ class BookClasses extends Component {
   }
 
   filterByDay = (value) => {
-    console.log(value)
     if (this.state.filterDay.includes(value)) {
       let result = this.state.filterDay.filter(day => day !== value)
       this.setState({
@@ -124,7 +123,7 @@ class BookClasses extends Component {
                                         handleLeaveSession={this.handleLeaveSession} />)
       } else {
         tableDisplay = week.filter(dayDate => filterDay.some(day => dayDate.includes(day)))
-                           .map(day => <SessionsTable 
+                            .map(day => <SessionsTable 
                                           key={day} 
                                           day={day} 
                                           sessions={this.matchSessions(day)} 
@@ -137,14 +136,29 @@ class BookClasses extends Component {
     return (
       <div>
         <h1>Book Classes</h1>
-        {days.map(day => <DayRadioFilters 
+        <Grid divided='vertically' stackable>
+          <Grid.Row columns={3}>
+            <Grid.Column>
+            <Grid divided='vertically'>
+              <Grid.Row columns={7}>
+                  {days.map(day => <DayRadioFilters 
                           handleCheck={this.filterByDay}
                           filterDay={this.state.filterDay}
                           value={day}
                           label={day} />)}
-        <ClassSelectorDropdown 
-          handleCheck={this.filterByClass}
-          filterClass={this.state.filterClass} />
+              </Grid.Row>
+            </Grid>
+            </Grid.Column>
+            <Grid.Column></Grid.Column>
+            <Grid.Column>
+              <Segment>
+                <ClassSelectorDropdown 
+                  handleCheck={this.filterByClass}
+                  filterClass={this.state.filterClass} />
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         {tableDisplay}
       </div>
     );
