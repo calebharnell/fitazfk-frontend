@@ -55,6 +55,7 @@ class AdminUsers extends Component {
                 <AdminUsersRow 
                   firstName={user.firstName}
                   lastName={user.lastName}
+                  signupDate={user.signupDate}
                   id={user._id}
                   email={user.email}
                   active={user.active} />
