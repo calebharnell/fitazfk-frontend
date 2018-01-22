@@ -5,13 +5,13 @@ const SessionRow = ({ session, currentUser, handleJoinSession, handleLeaveSessio
 	let joinButton = null
 	if (currentUser) {
 		if (session.attendees.some(attendee => attendee._id === (currentUser._id))) {
-			joinButton = <Button 
+			joinButton = <Button secondary
 										size='mini' 
 										onClick={handleLeaveSession}>
 											Leave
 										</Button>
 		} else {
-			joinButton = <Button 
+			joinButton = <Button primary
 										size='mini' 
 										onClick={handleJoinSession}>
 											Join

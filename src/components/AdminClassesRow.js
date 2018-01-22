@@ -71,11 +71,14 @@ class AdminClassesRow extends Component {
 				  	<Table.Cell>{this.props.instructor}</Table.Cell>
 				  	<Table.Cell>
 				  		{this.props.attendees ? `${this.props.attendees.length} / ${this.props.maxAttendees}` : '0'}
-				  		<Button floated='right' onClick={this.handleAttendeesModalOpen}>Show Attendees</Button>
+				  		<Button basic color='blue' floated='right' onClick={this.handleAttendeesModalOpen}>Show Attendees</Button>
 				  	</Table.Cell>
 				  	<Table.Cell>
-				  		<Button floated='right' onClick={this.handleCreateModalOpen}>Edit</Button>
-				  		<Button floated='right' onClick={this.handleDeleteModalOpen}>Delete</Button>
+					  	<Button.Group>
+					  		<Button primary floated='right' onClick={this.handleCreateModalOpen}>Edit</Button>
+					  		<Button.Or />
+					  		<Button secondary floated='right' onClick={this.handleDeleteModalOpen}>Delete</Button>
+				  		</Button.Group>
 				  	</Table.Cell>
 				</Table.Row>
 				{this.state.createModalActive && <CreateClassModal
