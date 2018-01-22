@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Checkbox } from 'semantic-ui-react'
+import { Form, Checkbox, Grid, Segment } from 'semantic-ui-react'
 
 
 export default class DayRadioFilters extends Component {
@@ -16,7 +16,8 @@ export default class DayRadioFilters extends Component {
 
 
   render() {
-    return ( 
+    return (
+      <Grid.Column>
         <Checkbox
           label={this.props.label}
           name='dayRadioFilters'
@@ -24,6 +25,7 @@ export default class DayRadioFilters extends Component {
           checked={this.state.checked}
           onChange={this.handleChange}
         />
+      </Grid.Column>
     )
   }
 }
