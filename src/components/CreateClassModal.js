@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
-import { api } from '../api/init';
 
 class CreateClassModal extends Component {
 

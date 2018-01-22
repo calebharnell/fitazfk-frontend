@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Embed, Segment, Dimmer, Loader } from 'semantic-ui-react';
+import { Embed, Dimmer, Loader } from 'semantic-ui-react';
 
 class MapsEmbed extends Component {
   state = {

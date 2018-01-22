@@ -107,58 +107,60 @@ class AdminClasses extends Component {
   }
 
   render() {
+    const { sessions, isLoading } = this.state
+    let tableDisplay;
 
-  const { sessions, isLoading } = this.state
-  let tableDisplay;
+    if (isLoading) {
+      tableDisplay = <Dimmer active>
+                       <Loader>Loading</Loader>
+                     </Dimmer>
+    } else {
+      tableDisplay = 
+      <Table celled compact definition>
+        <Table.Header fullWidth>
+          <Table.Row>
+            <Table.HeaderCell colSpan='6'>
+              <Button onClick={this.handleCreateModalOpen} floated='left'>
+                Create New Class
+              </Button>
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
 
-  if (isLoading) {
-    tableDisplay = <Dimmer active>
-                     <Loader>Loading</Loader>
-                   </Dimmer>
-  } else {
-    tableDisplay = <Table celled compact definition>
-          <Table.Header fullWidth>
-            <Table.Row>
-              <Table.HeaderCell colSpan='6'>
-                <Button onClick={this.handleCreateModalOpen} floated='left'>
-                  Create New Class
-                </Button>
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+        <Table.Header fullWidth>
+          <Table.Row>
+            <Table.HeaderCell>Date</Table.HeaderCell>
+            <Table.HeaderCell>Time</Table.HeaderCell>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Instructor</Table.HeaderCell>
+            <Table.HeaderCell>Attendees</Table.HeaderCell>
+            <Table.HeaderCell>Edit</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+          {sessions.map(session => (<AdminClassesRow
+                                      key={session._id}
+                                      id={session._id}
+                                      day={session.day}
+                                      time={session.time}
+                                      name={session.name}
+                                      instructor={session.instructor}
+                                      floor={session.floor} 
+                                      attendees={session.attendees} 
+                                      maxAttendees={session.maxAttendees} 
+                                      onUpdate={(formData) => this.handleUpdate(session._id, formData)}
+                                      onDelete={this.handleDelete}
+                                      onRemove={this.handleLeaveClass} />
+          ))}
+      </Table>
 
-          <Table.Header fullWidth>
-            <Table.Row>
-              <Table.HeaderCell>Date</Table.HeaderCell>
-              <Table.HeaderCell>Time</Table.HeaderCell>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Instructor</Table.HeaderCell>
-              <Table.HeaderCell>Attendees</Table.HeaderCell>
-              <Table.HeaderCell>Edit</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-            {sessions.map(session => (<AdminClassesRow
-                                        key={session._id}
-                                        id={session._id}
-                                        day={session.day}
-                                        time={session.time}
-                                        name={session.name}
-                                        instructor={session.instructor}
-                                        floor={session.floor} 
-                                        attendees={session.attendees} 
-                                        maxAttendees={session.maxAttendees} 
-                                        onUpdate={(formData) => this.handleUpdate(session._id, formData)}
-                                        onDelete={this.handleDelete}
-                                        onRemove={this.handleLeaveClass} />
-            ))}
-        </Table>
+      {
+        this.state.createModalActive && <CreateClassModal
+                                          onCancel={this.handleCreateModalCancel}
+                                          onSave={this.handleCreate}
+                                          />
+      }
+    }
 
-        {this.state.createModalActive && <CreateClassModal
-          onCancel={this.handleCreateModalCancel}
-          onSave={this.handleCreate}
-          />}
-
-  }
     return (
       <div>
         {tableDisplay}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Dropdown } from 'semantic-ui-react'
+import { Table, Button } from 'semantic-ui-react'
 import CreateClassModal from './CreateClassModal';
 import DeleteClassModal from './DeleteClassModal';
 import AttendeesModal from './AttendeesModal';

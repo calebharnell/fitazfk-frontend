@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Checkbox, Grid, Segment } from 'semantic-ui-react'
+import { Checkbox, Grid } from 'semantic-ui-react'
 
 
 export default class DayRadioFilters extends Component {
