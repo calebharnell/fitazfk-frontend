@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'semantic-ui-react';
+import { Table, Button, Dimmer, Loader } from 'semantic-ui-react';
 import { api } from '../api/init';
 import CreateClassModal from './CreateClassModal';
 import AdminClassesRow from './AdminClassesRow';
@@ -7,8 +7,15 @@ import AdminClassesRow from './AdminClassesRow';
 class AdminClasses extends Component {
 
   state = {
+    isLoading: false,
   	sessions: [],
     createModalActive: false
+  }
+
+  changeLoading = () => {
+    this.setState({
+      isLoading: !this.state.isLoading
+    })
   }
 
   handleCreateModalOpen = () => {
@@ -73,11 +80,13 @@ class AdminClasses extends Component {
   }
 
   fetchClasses() {
+    this.changeLoading()
     api.get('/sessions')
       .then((response) => {
         this.setState({
           sessions: response.data
         })
+        this.changeLoading()
       })
       .catch((error) => {
         console.log('An error occured retrieving sessions.', error)
@@ -99,11 +108,15 @@ class AdminClasses extends Component {
 
   render() {
 
-  const { sessions } = this.state
+  const { sessions, isLoading } = this.state
+  let tableDisplay;
 
-    return (
-      <div>
-        <Table celled compact definition>
+  if (isLoading) {
+    tableDisplay = <Dimmer active>
+                     <Loader>Loading</Loader>
+                   </Dimmer>
+  } else {
+    tableDisplay = <Table celled compact definition>
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell colSpan='6'>
@@ -145,6 +158,10 @@ class AdminClasses extends Component {
           onSave={this.handleCreate}
           />}
 
+  }
+    return (
+      <div>
+        {tableDisplay}
       </div>
     );
   }
