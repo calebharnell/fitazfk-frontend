@@ -8,10 +8,10 @@ export default class DayRadioFilters extends Component {
   }
 
   handleChange = (e, { value }) => {
+    this.props.handleCheck(value)
     this.setState({
       checked: !this.state.checked
     })
-    this.props.handleCheck(value)
   }
 
 
