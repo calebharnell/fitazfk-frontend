@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dropdown, Button } from 'semantic-ui-react'
+import { Dropdown } from 'semantic-ui-react'
 
 const options = [
   { key: 'FK - STRENGTH FULL BODY', text: 'FK - STRENGTH FULL BODY', value: 'FK - STRENGTH FULL BODY' },
