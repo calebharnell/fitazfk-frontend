@@ -66,13 +66,11 @@ class BookClasses extends Component {
   }
 
   handleJoinSession = (sessionId) => {
-    this.changeLoading()
     api.patch(`/sessions/join`, {
         _id: sessionId
       })
       .then((response) => {
         this.fetchSessions()
-        this.changeLoading()
       })
       .catch((error) => {
         console.log('An error occured when trying to book into the session.', error)
@@ -80,13 +78,11 @@ class BookClasses extends Component {
   }
 
   handleLeaveSession = (sessionId) => {
-    this.changeLoading()
     api.patch(`/sessions/leave`, {
         _id: sessionId
       })
       .then((response) => {
         this.fetchSessions()
-        this.changeLoading()
       })
       .catch((error) => {
         console.log('An error occured when trying to book into the session.', error)
@@ -94,11 +90,13 @@ class BookClasses extends Component {
   }
 
   fetchSessions() {
+    this.changeLoading()
     api.get('/sessions')
       .then((response) => {
         this.setState({
           sessions: response.data
         })
+        this.changeLoading()
       })
       .catch((error) => {
         console.log('An error occured retrieving sessions.', error)
