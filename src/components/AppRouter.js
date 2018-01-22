@@ -13,7 +13,6 @@ import Account from './Account';
 import AdminClasses from './AdminClasses';
 import AdminUsers from './AdminUsers';
 import LoginMessage from './LoginMessage';
-import LogoutMessage from './LogoutMessage';
 import Logo from './Logo';
 import jwtDecode from 'jwt-decode';
 
@@ -173,7 +172,6 @@ class AppRouter extends Component {
             <div>
               {this.state.loggedIn && <LoginMessage
                                         currentUser={this.state.currentUser} />}
-              {!this.state.loggedIn && <LogoutMessage/>}
             </div>
             <Route exact path="/" component={Home}/>
             <Route
