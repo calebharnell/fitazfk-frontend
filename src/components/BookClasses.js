@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { api } from '../api/init';
 import SessionsTable from './SessionsTable';
 import DayRadioFilters from './DayRadioFilters';
+import ClassSelectorDropdown from './ClassSelectorDropdown';
 import { Dimmer, Loader } from 'semantic-ui-react'
 
 class BookClasses extends Component {
@@ -12,7 +13,7 @@ class BookClasses extends Component {
       sessions: [],
       isLoading: false,
       filterDay: [],
-      filterClass: '',
+      filterClass: [],
       days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     }
   }
@@ -31,10 +32,21 @@ class BookClasses extends Component {
     }
   }
 
-  matchSessions = (day) => {
-    return this.state.sessions.filter(session => {
-      return session.day === day
+  filterByClass = (value) => {
+    this.setState({
+      filterClass: value
     })
+  }
+
+  matchSessions = (day) => {
+    if (this.state.filterClass < 1) {
+      return this.state.sessions.filter(session => {
+        return session.day === day
+      })   
+    } else {
+      let filterSessionResult = this.state.sessions.filter(session => this.state.filterClass.some(sessionName => session.name.includes(sessionName)))
+      return filterSessionResult.filter(session => session.day === day)
+    }
   }
 
   createWeek = () => {
@@ -95,7 +107,7 @@ class BookClasses extends Component {
   }
 
   render() {
-    const { week, days, filterDay } = this.state;
+    const { week, days, filterDay, filterClass } = this.state;
     let tableDisplay
     if (this.state.isLoading) {
       tableDisplay = <Dimmer active>
@@ -130,7 +142,9 @@ class BookClasses extends Component {
                           filterDay={this.state.filterDay}
                           value={day}
                           label={day} />)}
-        
+        <ClassSelectorDropdown 
+          handleCheck={this.filterByClass}
+          filterClass={this.state.filterClass} />
         {tableDisplay}
       </div>
     );
