@@ -135,19 +135,20 @@ class BookClasses extends Component {
       <div>
         <h1>Book Classes</h1>
         <Grid divided='vertically' stackable>
-          <Grid.Row columns={3}>
+          <Grid.Row columns={2}>
             <Grid.Column>
-            <Grid divided='vertically'>
-              <Grid.Row columns={7}>
-                  {days.map(day => <DayRadioFilters 
-                          handleCheck={this.filterByDay}
-                          filterDay={this.state.filterDay}
-                          value={day}
-                          label={day} />)}
-              </Grid.Row>
-            </Grid>
+              <Segment>
+                <Grid divided='vertically'>
+                  <Grid.Row columns={7}>
+                      {days.map(day => <DayRadioFilters 
+                              handleCheck={this.filterByDay}
+                              filterDay={this.state.filterDay}
+                              value={day}
+                              label={day} />)}
+                  </Grid.Row>
+                </Grid>
+              </Segment>
             </Grid.Column>
-            <Grid.Column></Grid.Column>
             <Grid.Column>
               <Segment>
                 <ClassSelectorDropdown 

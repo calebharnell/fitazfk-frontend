@@ -120,7 +120,7 @@ class AdminClasses extends Component {
         <Table.Header fullWidth>
           <Table.Row>
             <Table.HeaderCell colSpan='6'>
-              <Button onClick={this.handleCreateModalOpen} floated='left'>
+              <Button basic color='blue' onClick={this.handleCreateModalOpen} floated='left'>
                 Create New Class
               </Button>
             </Table.HeaderCell>
