@@ -14,7 +14,7 @@ class BookClasses extends Component {
       isLoading: false,
       filterDay: [],
       filterClass: [],
-      days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      days: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
     }
   }
 
@@ -41,7 +41,7 @@ class BookClasses extends Component {
     if (this.state.filterClass < 1) {
       return this.state.sessions.filter(session => {
         return session.day === day
-      })   
+      })
     } else {
       let filterSessionResult = this.state.sessions.filter(session => this.state.filterClass.some(sessionName => session.name.includes(sessionName)))
       return filterSessionResult.filter(session => session.day === day)
@@ -51,7 +51,7 @@ class BookClasses extends Component {
   createWeek = () => {
     const today = new Date();
     const week = []
-    for (let i = 0; i < 7; i++) { 
+    for (let i = 0; i < 7; i++) {
         week.push(new Date(today.getFullYear(), today.getMonth(), today.getDate() + i).toDateString())
       }
     this.setState({
@@ -112,20 +112,20 @@ class BookClasses extends Component {
                      </Dimmer>
     } else {
       if (filterDay.length < 1) {
-      tableDisplay = week.map(day => <SessionsTable 
-                                        key={day} 
-                                        day={day} 
-                                        sessions={this.matchSessions(day)} 
+      tableDisplay = week.map(day => <SessionsTable
+                                        key={day}
+                                        day={day}
+                                        sessions={this.matchSessions(day)}
                                         currentUser={this.props.currentUser}
                                         handleJoinSession={this.handleJoinSession}
                                         handleItemClick={this.props.handleItemClick}
                                         handleLeaveSession={this.handleLeaveSession} />)
       } else {
         tableDisplay = week.filter(dayDate => filterDay.some(day => dayDate.includes(day)))
-                            .map(day => <SessionsTable 
-                                          key={day} 
-                                          day={day} 
-                                          sessions={this.matchSessions(day)} 
+                            .map(day => <SessionsTable
+                                          key={day}
+                                          day={day}
+                                          sessions={this.matchSessions(day)}
                                           currentUser={this.props.currentUser}
                                           handleJoinSession={this.handleJoinSession}
                                           handleItemClick={this.props.handleItemClick}
@@ -134,15 +134,15 @@ class BookClasses extends Component {
     }
 
     return (
-      <div>
+      <div className='timetable-component'>
         <h1>Book Classes</h1>
         <Grid divided='vertically' stackable>
           <Grid.Row columns={2}>
             <Grid.Column>
               <Segment>
-                <Grid divided='vertically'>
-                  <Grid.Row columns={7}>
-                      {days.map(day => <DayRadioFilters 
+                <Grid className='radio-grid'>
+                  <Grid.Row columns={6} className='radio-row'>
+                      {days.map(day => <DayRadioFilters
                               handleCheck={this.filterByDay}
                               filterDay={this.state.filterDay}
                               value={day}
@@ -153,7 +153,7 @@ class BookClasses extends Component {
             </Grid.Column>
             <Grid.Column>
               <Segment>
-                <ClassSelectorDropdown 
+                <ClassSelectorDropdown
                   handleCheck={this.filterByClass}
                   filterClass={this.state.filterClass} />
               </Segment>

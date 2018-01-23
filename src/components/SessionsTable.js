@@ -8,16 +8,16 @@ const SessionsTable = ({ day, sessions, currentUser, handleJoinSession, handleLe
   	    <Table.Header>
   	      <Table.Row>
   	        <Table.HeaderCell width='four'>{day}</Table.HeaderCell>
-  	        <Table.HeaderCell width='four'>Class</Table.HeaderCell>
-            <Table.HeaderCell width='four'>Instructor</Table.HeaderCell>
-            <Table.HeaderCell width='four'>Class Size</Table.HeaderCell>
-  	        <Table.HeaderCell width='four'>Action</Table.HeaderCell>
+  	        <Table.HeaderCell width='four'></Table.HeaderCell>
+            <Table.HeaderCell width='four'></Table.HeaderCell>
+            <Table.HeaderCell width='four'></Table.HeaderCell>
+  	        <Table.HeaderCell width='four'></Table.HeaderCell>
   	      </Table.Row>
   	    </Table.Header>
   	    {
-          sessions.map(session => session.day === day && <SessionRow 
+          sessions.map(session => session.day === day && <SessionRow
                                                             session={session}
-                                                            key={session._id} 
+                                                            key={session._id}
                                                             currentUser={currentUser}
                                                             handleItemClick={handleItemClick}
                                                             handleJoinSession={() => handleJoinSession(session._id)}
@@ -28,5 +28,3 @@ const SessionsTable = ({ day, sessions, currentUser, handleJoinSession, handleLe
 }
 
 export default SessionsTable;
-
-

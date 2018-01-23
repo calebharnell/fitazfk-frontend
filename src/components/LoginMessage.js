@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Message } from 'semantic-ui-react'
 
 export default class LoginMessage extends Component {
-  
+
 	constructor(props){
 	  super(props)
 	  this.state = {
@@ -18,9 +18,10 @@ export default class LoginMessage extends Component {
     if (this.state.visible) {
       return (
         <Message
+          color='blue'
           onDismiss={this.handleDismiss}
-          header={`Hello ${this.props.currentUser.firstName} ${this.props.currentUser.lastName}`}
-          content={`You are logged in with ${this.props.currentUser.email}`}
+          header={`Hello, ${this.props.currentUser.firstName} ${this.props.currentUser.lastName}!`}
+          content={`You are currently logged in as ${this.props.currentUser.email}`}
         />
       )
     }
@@ -31,4 +32,3 @@ export default class LoginMessage extends Component {
     )
   }
 }
-

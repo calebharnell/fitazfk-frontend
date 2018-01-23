@@ -118,7 +118,7 @@ class AppRouter extends Component {
     } else {
       mobileNavDropdown = <div className='mobile-nav-dropdown'>
                             <Segment>
-                              <Button secondary fluid size='large'icon labelPosition='right' onClick={this.toggleMobileNavbar}>Menu<Icon name='chevron down' size='medium'/></Button>
+                              <Button secondary fluid size='large' icon labelPosition='right' onClick={this.toggleMobileNavbar}>Menu<Icon name='chevron down' size='small'/></Button>
                             </Segment>
                           </div>
     };
