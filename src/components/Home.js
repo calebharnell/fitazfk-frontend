@@ -30,6 +30,9 @@ class Home extends Component {
             <p>Feeling comfortable amongst state of the art equipment, whilst taking your body to your next level is what we’re all about.</p>
             <Divider />
             <Button as={Link} to='/sign-up' name='sign-up' onClick={this.props.handleItemClick}><h2>Click here to register for your free class!</h2></Button>
+            <Divider />
+            <Header as='h1'>FITAZFK ON 7 NEWS</Header>
+            <VideoEmbed />
           </Segment>
         </Parallax>
         <Parallax
@@ -40,7 +43,7 @@ class Home extends Component {
           <div style={{ height: '800px' }} />
         </Parallax>
         <Parallax>
-          <Segment inverted className='home-segment'>
+          <Segment inverted className='home-segment middle-block'>
             <Header as='h1'>WE ARE FITAZFK</Header>
             <p>FitazFK Gym was founded by 3 fitness experts.</p>
             <p>Their passion for fitness is felt throughout the gym, and every ounce of their knowledge and enthusiasm is transferred to every member.</p>
@@ -59,9 +62,7 @@ class Home extends Component {
           <div style={{ height: '800px' }} />
         </Parallax>
         <Parallax>
-          <Segment>
-            <h1>FITAZFK ON 7 NEWS</h1>
-            <VideoEmbed />
+          <Segment className='contact-segment'>
             <Divider />
             <ContactDetails />
           </Segment>
