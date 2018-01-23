@@ -118,6 +118,7 @@ class BookClasses extends Component {
                                         sessions={this.matchSessions(day)} 
                                         currentUser={this.props.currentUser}
                                         handleJoinSession={this.handleJoinSession}
+                                        handleItemClick={this.props.handleItemClick}
                                         handleLeaveSession={this.handleLeaveSession} />)
       } else {
         tableDisplay = week.filter(dayDate => filterDay.some(day => dayDate.includes(day)))
@@ -127,6 +128,7 @@ class BookClasses extends Component {
                                           sessions={this.matchSessions(day)} 
                                           currentUser={this.props.currentUser}
                                           handleJoinSession={this.handleJoinSession}
+                                          handleItemClick={this.props.handleItemClick}
                                           handleLeaveSession={this.handleLeaveSession} />)
       }
     }

@@ -173,7 +173,13 @@ class AppRouter extends Component {
               {this.state.loggedIn && <LoginMessage
                                         currentUser={this.state.currentUser} />}
             </div>
-            <Route exact path="/" component={Home}/>
+            <Route
+              exact
+              path="/"
+              render={(routeProps) => (
+                <Home {...routeProps} handleItemClick={this.handleItemClick} />
+              )}
+            />
             <Route
               path="/sign-up"
               render={(routeProps) => (
@@ -189,7 +195,9 @@ class AppRouter extends Component {
             <Route
               path="/book-classes"
               render={(routeProps) => (
-                <BookClasses {...routeProps} currentUser={currentUser} />
+                <BookClasses {...routeProps} 
+                  currentUser={currentUser}
+                  handleItemClick={this.handleItemClick} />
               )}
             />
             <Route path="/classes" component={Classes}/>

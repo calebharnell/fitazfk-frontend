@@ -7,6 +7,7 @@ import fitazfkGymRings from './images/fitazfk-gym-rings.jpg'
 import fitazfkGymBoxing from './images/fitazfk-gym-boxing.jpg'
 import fitazfkGymFoyer from './images/fitazfk-gym-foyer.jpg'
 import fitazfkLogo from './images/fitazfk-logo.png'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Home extends Component {
   render() {
@@ -28,7 +29,7 @@ class Home extends Component {
             whatever that may be.</p>
             <p>Feeling comfortable amongst state of the art equipment, whilst taking your body to your next level is what we’re all about.</p>
             <Divider />
-            <Button><h2>Click here to register for your free class!</h2></Button>
+            <Button as={Link} to='/sign-up' name='sign-up' onClick={this.props.handleItemClick}><h2>Click here to register for your free class!</h2></Button>
           </Segment>
         </Parallax>
         <Parallax
