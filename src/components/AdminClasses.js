@@ -95,8 +95,9 @@ class AdminClasses extends Component {
 
   handleLeaveClass = (classId, attendeeId) => {
     console.log(classId, attendeeId)
-    api.patch(`/admin/sessions/remove/${attendeeId}`, {
-        _id: classId
+    api.patch(`/admin/sessions/remove`, {
+        _id: classId,
+        attendeeId: attendeeId
       })
       .then((response) => {
         this.fetchClasses()
