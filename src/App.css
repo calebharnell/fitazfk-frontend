@@ -50,6 +50,25 @@
   margin-bottom: 4  0px;
 }
 
+.home-component .home-segment {
+  padding: 50px 80px 50px 80px;
+  border-radius: 0;
+}
+
+.home-component .Button {
+  padding-top: 50px;
+  border-radius: 0;
+}
+
+.home-component .logo {
+  margin-top: 20vh;
+}
+
+.home-component .logo-background {
+  background-color: rgba(255,255,255,.5);
+  border-radius: 20px;
+}
+
 .home-embed {
   margin: auto;
   max-width: 800px;
@@ -81,3 +100,4 @@ h1 {
 .footer {
   margin-top: 30px;
 }
+

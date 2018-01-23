@@ -1,37 +1,75 @@
 import React, { Component } from 'react';
 import ContactDetails from './ContactDetails';
 import VideoEmbed from './VideoEmbed';
-import { Image, Segment, Button, Divider  } from 'semantic-ui-react';
-import fitazkGymExternal from './images/fitazfk-gym-external.png'
+import { Parallax, Background } from 'react-parallax';
+import { Image, Segment, Button, Divider, Container, Header } from 'semantic-ui-react';
+import fitazfkGymRings from './images/fitazfk-gym-rings.jpg'
+import fitazfkGymBoxing from './images/fitazfk-gym-boxing.jpg'
+import fitazfkGymFoyer from './images/fitazfk-gym-foyer.jpg'
+import fitazfkLogo from './images/fitazfk-logo.png'
 
 class Home extends Component {
   render() {
     return (
       <div className='home-component'>
-        <Segment inverted className='home-container'>
-          <Image src={fitazkGymExternal} size='massive' centered fluid rounded/>
-          <Divider />
-            <h2>DO YOU WANT TO GET FITAZFK?</h2>
-            <h4>Fitaz Functional Kinetics, Kangaroo Point is the ultimate place to achieve your fitness goals -
-            whatever that may be.</h4>
-            <h4>Feeling comfortable amongst state of the art equipment, whilst taking your body to your next level is what we’re all about.</h4>
-          <Divider />
-            <Button primary><h1>Click here to register for your free class!</h1></Button>
-          <Divider />
-            <h2>WE ARE FITAZFK</h2>
-            <h4>FitazFK Gym was founded by 3 fitness experts.</h4>
-            <h4>Their passion for fitness is felt throughout the gym, and every ounce of their knowledge and enthusiasm is transferred to every member. No one is missed.</h4>
-            <h3>HOW WE WORK...</h3>
-            <h4>Fitaz Functional Kinetics (or Functional Movement) is the foundation of our classes and training. No more spending hours in the gym! Our unique, proven method offers fast and efficient training combined with a clean and achievable nutritional plan.  </h4>
-          <Divider />
-          <h2>FITAZFK ON 7 NEWS</h2>
-          <VideoEmbed />
-        </Segment>
-        <Divider />
-        <ContactDetails />
+        <Parallax
+          bgImage={fitazfkGymBoxing}
+          bgImageAlt="the cat"
+          strength={200}
+        >
+          <div style={{ height: '800px' }} className='logo'>
+            <Image src={fitazfkLogo} size='large' centered className='logo-background' />
+          </div>
+        </Parallax>
+        <Parallax>
+          <Segment inverted className='home-segment'>
+            <Header as='h1'>DO YOU WANT TO GET FITAZFK?</Header>
+            <p>Fitaz Functional Kinetics, Kangaroo Point is the ultimate place to achieve your fitness goals -
+            whatever that may be.</p>
+            <p>Feeling comfortable amongst state of the art equipment, whilst taking your body to your next level is what we’re all about.</p>
+            <Divider />
+            <Button><h2>Click here to register for your free class!</h2></Button>
+          </Segment>
+        </Parallax>
+        <Parallax
+          bgImage={fitazfkGymRings}
+          bgImageAlt="the cat"
+          strength={200}
+        >
+          <div style={{ height: '800px' }} />
+        </Parallax>
+        <Parallax>
+          <Segment inverted className='home-segment'>
+            <Header as='h1'>WE ARE FITAZFK</Header>
+            <p>FitazFK Gym was founded by 3 fitness experts.</p>
+            <p>Their passion for fitness is felt throughout the gym, and every ounce of their knowledge and enthusiasm is transferred to every member.</p>
+            <p>No one is missed.</p>
+            <Divider />
+            <Header as='h1'>HOW WE WORK...</Header>
+            <p>Fitaz Functional Kinetics (or Functional Movement) is the foundation of our classes and training. No more spending hours in the gym!</p>
+            <p>Our unique, proven method offers fast and efficient training combined with a clean and achievable nutritional plan.</p>
+          </Segment>
+        </Parallax>   
+        <Parallax
+          bgImage={fitazfkGymFoyer}
+          bgImageAlt="the cat"
+          strength={200}
+        >
+          <div style={{ height: '800px' }} />
+        </Parallax>
+        <Parallax>
+          <Segment>
+            <h1>FITAZFK ON 7 NEWS</h1>
+            <VideoEmbed />
+            <Divider />
+            <ContactDetails />
+          </Segment>
+        </Parallax>
       </div>
+
     );
   }
 }
 
 export default Home;
+
