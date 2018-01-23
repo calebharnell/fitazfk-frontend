@@ -21,23 +21,23 @@ asdf
 asdf
 ## Wireframes
 
-Homepage
+Homepage:
 
 ![Homepage](Wireframe1a.jpg)
 
-Classes Table
+Classes Table:
 
 ![ClassesTable](Wireframe2a.jpg)
 
-Gallery
+Gallery:
 
 ![Gallery](Wireframe3a.jpg)
 
-Contact
+Contact:
 
 ![Contact](Wireframe4a.jpg)
 
-Admin Classes
+Admin Classes:
 
 ![AdminClasses](Wireframe5a.jpg)
 
