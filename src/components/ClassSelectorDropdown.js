@@ -8,7 +8,7 @@ const options = [
   { key: 'FITYAZ CORE', text: 'FITYAZ CORE', value: 'FITYAZ CORE' },
   { key: 'FK - HIIT SPIN', text: 'FK - HIIT SPIN', value: 'FK - HIIT SPIN' },
   { key: 'FK - HIIT FREESTYLE', text: 'FK - HIIT FREESTYLE', value: 'FK - HIIT FREESTYLE' },
-  { key: 'HIIT BOXING', text: 'HIIT BOXING', value: 'HIIT BOXING' },
+  { key: 'FK - HIIT BOX', text: 'HIIT BOXING', value: 'HIIT BOXING' },
   { key: 'BOXING', text: 'BOXING', value: 'BOXING' },
   { key: 'KICKBOXING', text: 'KICKBOXING', value: 'KICKBOXING' },
   { key: 'SUSPENSION TRAINING', text: 'SUSPENSION TRAINING', value: 'SUSPENSION TRAINING' },

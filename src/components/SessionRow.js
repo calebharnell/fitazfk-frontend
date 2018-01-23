@@ -19,8 +19,8 @@ const SessionRow = ({ session, currentUser, handleJoinSession, handleLeaveSessio
 										</Button>
 		}
 	} else {
-		joinButton = <Button 
-									primary 
+		joinButton = <Button primary 
+									size='mini' 
 									as={Link} 
 									to='/login' 
 									name='login' 
