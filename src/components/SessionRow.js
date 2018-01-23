@@ -1,7 +1,8 @@
 import React from 'react';
 import { Table, Button } from 'semantic-ui-react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-const SessionRow = ({ session, currentUser, handleJoinSession, handleLeaveSession }) => {
+const SessionRow = ({ session, currentUser, handleJoinSession, handleLeaveSession, handleItemClick }) => {
 	let joinButton = null
 	if (currentUser) {
 		if (session.attendees.some(attendee => attendee._id === (currentUser._id))) {
@@ -18,7 +19,12 @@ const SessionRow = ({ session, currentUser, handleJoinSession, handleLeaveSessio
 										</Button>
 		}
 	} else {
-		joinButton = <p>Login to join.</p>
+		joinButton = <Button 
+									primary 
+									as={Link} 
+									to='/login' 
+									name='login' 
+									onClick={handleItemClick}>Login</Button>
 	}
 
  return (
