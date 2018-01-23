@@ -3,6 +3,7 @@ import ContactDetails from './ContactDetails';
 import VideoEmbed from './VideoEmbed';
 import { Image, Segment, Button, Divider  } from 'semantic-ui-react';
 import fitazkGymExternal from './images/fitazfk-gym-external.png'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Home extends Component {
   render() {
@@ -16,7 +17,7 @@ class Home extends Component {
             whatever that may be.</h4>
             <h4>Feeling comfortable amongst state of the art equipment, whilst taking your body to your next level is what we’re all about.</h4>
           <Divider />
-            <Button primary><h1>Click here to register for your free class!</h1></Button>
+            <Button primary as={Link} to='/sign-up' name='sign-up' onClick={this.props.handleItemClick}><h1>Click here to register for your free class!</h1></Button>
           <Divider />
             <h2>WE ARE FITAZFK</h2>
             <h4>FitazFK Gym was founded by 3 fitness experts.</h4>

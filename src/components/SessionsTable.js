@@ -2,7 +2,7 @@ import React from 'react';
 import SessionRow from './SessionRow';
 import { Table } from 'semantic-ui-react'
 
-const SessionsTable = ({ day, sessions, currentUser, handleJoinSession, handleLeaveSession }) => {
+const SessionsTable = ({ day, sessions, currentUser, handleJoinSession, handleLeaveSession, handleItemClick }) => {
   return (
   	<Table attached striped>
   	    <Table.Header>
@@ -19,6 +19,7 @@ const SessionsTable = ({ day, sessions, currentUser, handleJoinSession, handleLe
                                                             session={session}
                                                             key={session._id} 
                                                             currentUser={currentUser}
+                                                            handleItemClick={handleItemClick}
                                                             handleJoinSession={() => handleJoinSession(session._id)}
                                                             handleLeaveSession={() => handleLeaveSession(session._id)} />)
         }
