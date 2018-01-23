@@ -48,6 +48,11 @@
   margin-top: -13px;
 }
 
+.App .ui.message {
+  margin-top: -15px;
+  margin-bottom: 13px;
+}
+
 .home-component .home-container {
   padding-top: 30px;
   padding-bottom: 30px;
