@@ -33,7 +33,27 @@ The contact page has been re-styled and moved to its own page.  The embedded Goo
 ## Review of the conceptual design with the client
 asdf
 ## User Stories
-asdf
+
+As a user I should be able to:
+- Quickly see what the website is about.
+- Quickly find information about what classes the gym offers.
+- Quickly get the gyms contact info / location.
+- Quickly see pictures of the gym.
+- Easily signup to the gym.
+- Easily login.
+- Easily see the class timetable in a readable format.
+- Easily signup to a class / leave a class.
+- Easily see how many people in a class / the instructor of the class.
+- Easily filter the timetable by day or by class.
+
+As an admin I should be able to:
+
+- Have full CRUD control of sessions.
+- Have full CRUD control of users.
+- Quickly see information about which users are in each class.
+- Quickly be able to remove users from a class.
+
+
 ## Wireframes
 
 Homepage:
