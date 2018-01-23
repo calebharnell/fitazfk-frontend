@@ -38,8 +38,7 @@ class Home extends Component {
         <Parallax
           bgImage={fitazfkGymRings}
           bgImageAlt="the cat"
-          strength={200}
-        >
+          strength={200}>
           <div style={{ height: '800px' }} />
         </Parallax>
         <Parallax>
@@ -53,12 +52,11 @@ class Home extends Component {
             <p>Fitaz Functional Kinetics (or Functional Movement) is the foundation of our classes and training. No more spending hours in the gym!</p>
             <p>Our unique, proven method offers fast and efficient training combined with a clean and achievable nutritional plan.</p>
           </Segment>
-        </Parallax>   
+        </Parallax>
         <Parallax
           bgImage={fitazfkGymFoyer}
           bgImageAlt="the cat"
-          strength={200}
-        >
+          strength={200}>
           <div style={{ height: '800px' }} />
         </Parallax>
         <Parallax>
@@ -68,10 +66,8 @@ class Home extends Component {
           </Segment>
         </Parallax>
       </div>
-
     );
   }
 }
 
 export default Home;
-

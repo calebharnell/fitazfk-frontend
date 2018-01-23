@@ -29,4 +29,3 @@ export default class DayRadioFilters extends Component {
     )
   }
 }
-

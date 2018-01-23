@@ -13,21 +13,21 @@ class AdminClasses extends Component {
   }
 
   changeLoading = () => {
-    this.setState({
+    this.setState(prevState => ({
       isLoading: !this.state.isLoading
-    })
+    }))
   }
 
   handleCreateModalOpen = () => {
-    this.setState(prevState => ({
+    this.setState({
       createModalActive: true
-    }))
+    })
   }
 
   handleCreateModalCancel = () => {
-    this.setState(prevState => ({
+    this.setState({
       createModalActive: false
-    }))
+    })
   }
 
   handleCreate = (formData) => {
@@ -67,7 +67,7 @@ class AdminClasses extends Component {
       console.log('An error occured when trying to create class.', error)
     })
   }
-  
+
   handleDelete = (classId) => {
     api.delete(`/sessions/${classId}`, {
     })
@@ -116,7 +116,7 @@ class AdminClasses extends Component {
                        <Loader>Loading</Loader>
                      </Dimmer>
     } else {
-      tableDisplay = 
+      tableDisplay =
       <Table celled compact definition>
         <Table.Header fullWidth>
           <Table.Row>
@@ -145,25 +145,24 @@ class AdminClasses extends Component {
                                       time={session.time}
                                       name={session.name}
                                       instructor={session.instructor}
-                                      floor={session.floor} 
-                                      attendees={session.attendees} 
-                                      maxAttendees={session.maxAttendees} 
+                                      floor={session.floor}
+                                      attendees={session.attendees}
+                                      maxAttendees={session.maxAttendees}
                                       onUpdate={(formData) => this.handleUpdate(session._id, formData)}
                                       onDelete={this.handleDelete}
                                       onRemove={this.handleLeaveClass} />
           ))}
       </Table>
-
-      {
-        this.state.createModalActive && <CreateClassModal
-                                          onCancel={this.handleCreateModalCancel}
-                                          onSave={this.handleCreate}
-                                          />
-      }
     }
 
     return (
       <div>
+        {
+          this.state.createModalActive && <CreateClassModal
+                                            onCancel={this.handleCreateModalCancel}
+                                            onSave={this.handleCreate}
+                                            />
+        }
         {tableDisplay}
       </div>
     );

@@ -28,7 +28,6 @@ class MapsEmbed extends Component {
               padding: 5,
             },
           }}
-          source='googlemaps'
         />
       </div>
     )
