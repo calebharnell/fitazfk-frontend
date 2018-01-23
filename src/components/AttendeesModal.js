@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Header, Icon, Modal, List } from 'semantic-ui-react'
 
-export default class ModalExampleScrollingContent extends Component {
+export default class AttendeesModal extends Component {
 	constructor(props){
 	  super(props)
 	}

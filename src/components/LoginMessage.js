@@ -17,7 +17,8 @@ export default class LoginMessage extends Component {
   render() {
     if (this.state.visible) {
       return (
-        <Message
+        <Message 
+          className='login-message'
           onDismiss={this.handleDismiss}
           header={`Hello ${this.props.currentUser.firstName} ${this.props.currentUser.lastName}`}
           content={`You are logged in with ${this.props.currentUser.email}`}
