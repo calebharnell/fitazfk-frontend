@@ -86,7 +86,7 @@ class AppRouter extends Component {
     if (isDesktop && !loggedIn) {
       responsiveNavbar =  <Menu secondary>
                             <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/classes' name='class-descriptions' active={activeItem === 'class-descriptions'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/book-classes' name='timetable' active={activeItem === 'timetable'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>
@@ -96,7 +96,7 @@ class AppRouter extends Component {
     } else if (isDesktop && admin) {
       responsiveNavbar =  <Menu secondary>
                             <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/classes' name='class-descriptions' active={activeItem === 'class-descriptions'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/book-classes' name='timetable' active={activeItem === 'timetable'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>
@@ -108,7 +108,7 @@ class AppRouter extends Component {
     } else if (isDesktop && loggedIn) {
       responsiveNavbar =  <Menu secondary>
                             <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
-                            <Menu.Item as={Link} to='/classes' name='class-descriptions' active={activeItem === 'class-descriptions'} onClick={this.handleItemClick}/>
+                            <Menu.Item as={Link} to='/classes' name='classes' active={activeItem === 'classes'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/book-classes' name='timetable' active={activeItem === 'timetable'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/gallery' name='gallery' active={activeItem === 'gallery'} onClick={this.handleItemClick}/>
                             <Menu.Item as={Link} to='/contact' name='contact' active={activeItem === 'contact'} onClick={this.handleItemClick}/>

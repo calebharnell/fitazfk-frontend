@@ -19,6 +19,7 @@ export default class LoginMessage extends Component {
       return (
         <Message
           color='blue'
+          className='login-message'
           onDismiss={this.handleDismiss}
           header={`Hello, ${this.props.currentUser.firstName} ${this.props.currentUser.lastName}!`}
           content={`You are currently logged in as ${this.props.currentUser.email}`}
