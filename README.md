@@ -21,8 +21,20 @@ asdf
 asdf
 ## Wireframes
 
-# Homepage
-![Wireframe](Wireframe1a.jpg)
+Homepage
+![Homepage](Wireframe1a.jpg)
+
+Classes Table
+![ClassesTable](Wireframe2a.jpg)
+
+Gallery
+![Gallery](Wireframe3a.jpg)
+
+Contact
+![Contact](Wireframe4a.jpg)
+
+Admin Classes
+![AdminClasses](Wireframe5a.jpg)
 
 
 ## Workflow Diagram
