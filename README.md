@@ -89,6 +89,7 @@ Admin Classes:
 ![WorkflowDiagram](fitazfk-project-workflow.png)
 
 ## Entity Relationship Diagram
-![erd](fitazfk-project-erd.png)
+![ERD](fitazfk-project-erd.png)
 
 ## Project Plan
+![Timetable](fitazfk-project-timetable.png)
