@@ -110,5 +110,5 @@ Solution:
 - Fully responsive
 - Add a Class descriptions page
 
-
+Timetable:
 ![Timetable](fitazfk-project-timetable2.png)
