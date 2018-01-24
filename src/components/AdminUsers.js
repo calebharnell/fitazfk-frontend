@@ -39,12 +39,10 @@ class AdminUsers extends Component {
                       <Table.Header fullWidth>
                         <Table.Row>
                           <Table.HeaderCell colSpan='6'>
-                            <Button floated='right' icon labelPosition='left' primary size='small'>
-                              <Icon name='user' /> Add User
-                            </Button>
                             <Search
                               loading={isLoading}
                               onSearchChange={this.handleSearchChange}
+															placeholder='Search by surname'
                             />
                           </Table.HeaderCell>
                         </Table.Row>
@@ -59,7 +57,7 @@ class AdminUsers extends Component {
                       </Table.Header>
                       <Table.Body>
                         {filteredUsers.map(user =>(
-                            <AdminUsersRow 
+                            <AdminUsersRow
                               firstName={user.firstName}
                               lastName={user.lastName}
                               signupDate={user.signupDate}

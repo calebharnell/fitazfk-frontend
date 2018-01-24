@@ -30,10 +30,10 @@ class AdminUsersRow extends Component {
 	}
 
   render() {
-		return (			
+		return (
 			<Table.Row>
 			  <Table.Cell>{this.props.firstName} {this.props.lastName}</Table.Cell>
-			  <Table.Cell>{this.props.signupDate}</Table.Cell>
+			  <Table.Cell>{new Date(this.props.signupDate).toLocaleString()}</Table.Cell>
 			  <Table.Cell>{this.props.email}</Table.Cell>
 			  <Table.Cell><ActiveButton active={this.state.active} handleActive={this.handleActive}/></Table.Cell>
 			</Table.Row>
