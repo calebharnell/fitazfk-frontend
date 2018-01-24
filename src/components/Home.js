@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ContactDetails from './ContactDetails';
 import VideoEmbed from './VideoEmbed';
-import { Parallax, Background } from 'react-parallax';
-import { Image, Segment, Button, Divider, Container, Header } from 'semantic-ui-react';
+import { Parallax } from 'react-parallax';
+import { Image, Segment, Button, Divider, Header } from 'semantic-ui-react';
 import fitazfkGymRings from './images/fitazfk-gym-rings.jpg'
 import fitazfkGymBoxing from './images/fitazfk-gym-boxing.jpg'
 import fitazfkGymFoyer from './images/fitazfk-gym-foyer.jpg'

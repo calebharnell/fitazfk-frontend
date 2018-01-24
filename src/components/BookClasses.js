@@ -144,7 +144,7 @@ class BookClasses extends Component {
                   <Grid.Row columns={6} className='radio-row'>
                       {days.map(day => <DayRadioFilters
                               handleCheck={this.filterByDay}
-                              filterDay={this.state.filterDay}
+                              filterDay={filterDay}
                               value={day}
                               label={day} />)}
                   </Grid.Row>
@@ -155,7 +155,7 @@ class BookClasses extends Component {
               <Segment>
                 <ClassSelectorDropdown
                   handleCheck={this.filterByClass}
-                  filterClass={this.state.filterClass} />
+                  filterClass={filterClass} />
               </Segment>
             </Grid.Column>
           </Grid.Row>
