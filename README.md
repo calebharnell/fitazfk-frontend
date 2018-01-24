@@ -92,4 +92,23 @@ Admin Classes:
 ![ERD](fitazfk-project-erd.png)
 
 ## Project Plan
-![Timetable](fitazfk-project-timetable.png)
+
+Problem:
+
+- Booking system UX is poor
+- Embedded Gym Master elements not customisable
+- Google Maps location marker incorrect
+- Static Map
+- Not fully responsive
+- General Styling
+
+Solution: 
+
+- Booking system overhauled - change to  table format
+- Re-style the whole site using Semantic UI React
+- Contact page restyled and interactive map added
+- Fully responsive
+- Add a Class descriptions page
+
+
+![Timetable](fitazfk-project-timetable2.png)
