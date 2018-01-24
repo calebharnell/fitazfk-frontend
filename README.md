@@ -26,8 +26,17 @@ Admin users have access to an admin dashboard, in which they have full CRUD for 
 The contact page has been re-styled and moved to its own page.  The embedded Google map has been upgraded from a static map to an interactive one.  The location marker has been placed in the correct spot and has has buttons to get directions and save the location.
 
 
-## Review of the conceptual design with the client
-asdf
+## Client Interaction
+
+Meeting 1:
+
+https://docs.google.com/document/d/1bCrWrMEWA5iRrqAZl9cwilmjbMxzvoiJX2BbixZhcz8/edit?usp=sharing
+
+Meeting 2:
+
+https://docs.google.com/document/d/1dGXVO9oxS6955ThhMqlAhQ91mgyoQh621GVagtl0KY0/edit?usp=sharing
+
+
 ## User Stories
 
 As a user I should be able to:
