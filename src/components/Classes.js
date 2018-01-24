@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Card, Image } from 'semantic-ui-react';
+import { Grid, Image } from 'semantic-ui-react';
 import boxing from './images/boxing.png';
 import abs from './images/abs.png';
 import bike from './images/bike.png';

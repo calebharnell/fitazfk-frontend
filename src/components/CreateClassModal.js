@@ -52,10 +52,10 @@ class CreateClassModal extends Component {
   		        <Form.Group>
   		          <Form.Input label='Max Attendees' name='maxAttendees' value={maxAttendees} onChange={this.handleChange} width={16} />
   		        </Form.Group>
-  		        <Button type="submit">Submit</Button>
-  		        <Button onClick={this.props.onCancel} color='red'>
+  		        <Button secondary onClick={this.props.onCancel} color='red'>
   		          Cancel
   		        </Button>
+              <Button primary type="submit">Submit</Button>
   		      </Form>
 		      </Modal.Description>
 		    </Modal.Content>

@@ -160,7 +160,7 @@ class AppRouter extends Component {
         <Router>
           <div className="NavBar">
             <Segment className="navbar">
-              <Menu secondary fluid centered>
+              <Menu secondary fluid>
                 <Menu.Item className='logo-nav'>
                   <Logo/>
                 </Menu.Item>
