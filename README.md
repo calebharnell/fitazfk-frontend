@@ -53,6 +53,14 @@ As an admin I should be able to:
 - Quickly see information about which users are in each class.
 - Quickly be able to remove users from a class.
 
+Frontend Trello Board:
+
+https://trello.com/b/uroAcuWW/frontend
+
+Backend Trello Board:
+
+https://trello.com/b/gHKmd3kQ/backend
+
 
 ## Wireframes
 
