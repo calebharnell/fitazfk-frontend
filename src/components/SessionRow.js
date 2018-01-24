@@ -30,7 +30,7 @@ const SessionRow = ({ session, currentUser, handleJoinSession, handleLeaveSessio
  return (
  	<Table.Body>
  	  <Table.Row>
- 	    <Table.Cell>{session.time}}</Table.Cell>
+ 	    <Table.Cell>{session.time}</Table.Cell>
  	    <Table.Cell>{session.name}</Table.Cell>
  	    <Table.Cell>{session.instructor}</Table.Cell>
  	    <Table.Cell>{`${session.attendees.length} / ${session.maxAttendees}`}</Table.Cell>
