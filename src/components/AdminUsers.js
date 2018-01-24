@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Icon, Table, Search, Dimmer, Loader } from 'semantic-ui-react'
+import { Table, Search, Dimmer, Loader } from 'semantic-ui-react'
 import { api, setJwt } from '../api/init';
 import AdminUsersRow from './AdminUsersRow';
 
