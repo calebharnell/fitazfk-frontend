@@ -118,3 +118,8 @@ Solution:
 Timetable:
 
 ![Timetable](fitazfk-project-timetable2.png)
+
+Budget:
+
+![Timetable](budget.png)
+
